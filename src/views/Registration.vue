@@ -1,0 +1,298 @@
+<script setup lang="ts">
+import { reactive, ref } from "vue";
+import { useRouter } from "vue-router";
+import { db } from "@/main";
+import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
+import { doc, setDoc } from "firebase/firestore";
+import { useLogsStore } from "@/stores/logs";
+import { useLoadingStore } from "@/stores/loading";
+
+const logsStore = useLogsStore();
+const loadingStore = useLoadingStore();
+const router = useRouter();
+
+const form = reactive({
+  email: "",
+  pass: "",
+  passRep: "",
+  rules: false,
+  isValid() {
+    return (
+      this.pass === this.passRep &&
+      this.pass.length >= 6 &&
+      this.email &&
+      this.rules
+    );
+  },
+});
+const passDom = ref();
+const passRepDom = ref();
+const lineI = ref();
+const lineII = ref();
+const lineIII = ref();
+
+const colors = {
+  main: "#9966cc",
+  additional: "#d3d3d3",
+  error: "#E6414C",
+  valid: "#50C970",
+};
+
+function changeComplexity() {
+  if (form.pass.length >= 6 && form.passRep.length >= 6) {
+    lineI.value.style.backgroundColor = colors.main;
+  } else {
+    lineI.value.style.backgroundColor = colors.additional;
+    lineII.value.style.backgroundColor = colors.additional;
+    lineIII.value.style.backgroundColor = colors.additional;
+  }
+
+  if (form.pass.length >= 10 && form.passRep.length >= 10) {
+    lineII.value.style.backgroundColor = colors.main;
+  } else {
+    lineII.value.style.backgroundColor = colors.additional;
+    lineIII.value.style.backgroundColor = colors.additional;
+  }
+
+  if (form.pass.length >= 14 && form.passRep.length >= 14) {
+    lineIII.value.style.backgroundColor = colors.main;
+  } else {
+    lineIII.value.style.backgroundColor = colors.additional;
+  }
+  rightPass();
+}
+
+function rightPass() {
+  if (form.pass !== form.passRep) {
+    passDom.value.style.color = colors.error;
+    passRepDom.value.style.color = colors.error;
+  } else if (form.pass === "" && form.passRep === "") {
+    passDom.value.style.color = colors.additional;
+    passRepDom.value.style.color = colors.additional;
+  } else {
+    passDom.value.style.color = colors.valid;
+    passRepDom.value.style.color = colors.valid;
+  }
+}
+
+async function sendInfo() {
+  if (form.isValid()) {
+    loadingStore.show();
+    await createUserWithEmailAndPassword(getAuth(), form.email, form.pass).then(
+      async (userCredential) => {
+        const user = userCredential.user;
+        const name = form.email;
+        await setDoc(doc(db, "users", user.uid), {
+          name,
+          budgets: [],
+        });
+        logsStore.setName(name);
+        logsStore.setUid(user.uid);
+        localStorage.setItem("uid", user.uid);
+        await router.push("/");
+        loadingStore.hide();
+      },
+      (err) => {
+        alert(err);
+        loadingStore.hide();
+      }
+    );
+  }
+}
+</script>
+
+<template>
+  <div class="registration">
+    <h2>Регистрация</h2>
+
+    <form @submit.prevent="sendInfo()">
+      <input
+        type="text"
+        placeholder="Почта"
+        class="email inputLine"
+        v-model.trim="form.email"
+      />
+
+      <input
+        type="password"
+        placeholder="Пароль"
+        class="pass inputLine"
+        ref="passDom"
+        v-model.trim="form.pass"
+        @keyup="changeComplexity()"
+      />
+
+      <input
+        type="password"
+        placeholder="Повторите пароль"
+        class="passRep inputLine"
+        ref="passRepDom"
+        v-model.trim="form.passRep"
+        @keyup="changeComplexity()"
+      />
+
+      <div class="passComplexity">
+        <span class="passComplexity__line" ref="lineI"></span>
+        <span class="passComplexity__line" ref="lineII"></span>
+        <span class="passComplexity__line" ref="lineIII"></span>
+      </div>
+
+      <label class="rules">
+        <input type="checkbox" v-model="form.rules" />
+        Я соглсаен с правилами.
+      </label>
+
+      <button type="submit" class="submitBtn">Отправить</button>
+
+      <router-link to="/login" class="swapMode">
+        <h5>ЛОГИН</h5>
+      </router-link>
+    </form>
+  </div>
+</template>
+
+<style scoped>
+.registration {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+form {
+  min-width: 340px;
+  width: 40%;
+  max-width: 520px;
+  justify-content: center;
+  align-items: center;
+  padding: 30px 40px 20px 40px;
+  border-radius: 30px;
+  background-color: var(--color-background2);
+  color: var(--color-text);
+  box-shadow: 0 0 10px 1px var(--color-shadow);
+  display: grid;
+  grid-template: 50px 50px 50px 40px 20px 90px 10px / 1fr;
+}
+
+h2 {
+  font-size: 70px;
+  font-weight: 500;
+  color: #999999;
+  text-align: center;
+  margin: 0 0 60px 0;
+}
+
+.email,
+.pass,
+.passRep {
+  font-size: 18px;
+  transition: all 0.02s;
+  user-select: text;
+  color: var(--color-text);
+  background: transparent;
+}
+
+.email:focus,
+.pass:focus,
+.passRep:focus {
+  border-bottom: 2px solid #9966cc;
+  transition: all 0.02s;
+}
+
+.passComplexity {
+  display: grid;
+  grid-template: 5px / 1fr 1fr 1fr;
+  grid-gap: 5%;
+}
+
+.passComplexity__line {
+  width: 100%;
+  height: 5px;
+  background-color: #d3d3d3;
+  transition: all 0.5s;
+}
+
+.rules input {
+  cursor: pointer;
+}
+
+.submitBtn {
+  padding: 15px 0;
+  background-color: #9966cc;
+  border: none;
+  border-radius: 30px;
+  color: white;
+  font-size: 24px;
+  font-weight: 400;
+  transition: all 0.3s;
+  outline: none;
+}
+
+.submitBtn:hover {
+  transform: scale(1.05);
+  transition: all 0.3s;
+  box-shadow: 0 4px 10px 1px var(--color-shadow);
+}
+
+.inputLine {
+  border-left: none;
+  border-right: none;
+  border-top: none;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.swapMode {
+  display: flex;
+  justify-content: center;
+}
+
+h5 {
+  font-weight: 600;
+  color: gray;
+  position: relative;
+  cursor: pointer;
+}
+
+h5::after {
+  content: "";
+  position: absolute;
+  background-color: #9966cc;
+  left: 0;
+  bottom: -2px;
+  width: 0;
+  height: 2px;
+  transition: all 0.2s;
+}
+
+h5:hover::after {
+  width: 100%;
+  transition: all 0.2s;
+}
+
+@media screen and (max-width: 768px) {
+  h2 {
+    font-size: 50px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  form {
+    min-width: 300px;
+    width: 80%;
+    max-width: 520px;
+    padding: 20px 20px 20px 20px;
+  }
+
+  section {
+    width: 30%;
+    padding: 30px 40px 20px 40px;
+    min-width: 300px;
+  }
+
+  h2 {
+    font-size: 40px;
+  }
+}
+</style>
