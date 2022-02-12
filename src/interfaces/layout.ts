@@ -1,6 +1,8 @@
-export interface Layout {
-  StandardLayout: Element;
-  EmptyLayout: Element;
+import type { Component } from "vue";
 
-  [key: string]: Element;
+export interface Layout {
+  StandardLayout: Component;
+  EmptyLayout: Component;
+
+  [key: string]: Component;
 }
