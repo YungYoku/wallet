@@ -64,6 +64,9 @@ const budgetsStore = useBudgetsStore();
   padding: 10px 20px 10px 10px;
   margin-bottom: 10px;
   background-color: var(--color-background2);
+}
+
+.feedTags h3 {
   color: var(--color-text);
 }
 </style>

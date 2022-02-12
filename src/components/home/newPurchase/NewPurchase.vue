@@ -57,11 +57,7 @@ function addPurchase() {
 <template>
   <div>
     <form @submit.prevent="addPurchase()">
-      <input
-        type="text"
-        placeholder="Название"
-        v-model.trim="purchase.itemName"
-      />
+      <input type="text" placeholder="Товар" v-model.trim="purchase.itemName" />
       <input type="text" placeholder="Имя" v-model.trim="purchase.userName" />
       <input type="text" placeholder="Цена" v-model.number="purchase.price" />
       <select v-model="purchase.category">

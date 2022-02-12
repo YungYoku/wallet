@@ -48,13 +48,6 @@ async function deletePurchase() {
 
 <template>
   <div class="feedPurchase">
-    <div
-      class="feedPurchase__color"
-      :style="{
-        backgroundColor: color,
-      }"
-    ></div>
-
     <h3>{{ userName }}</h3>
     <h3>{{ itemName }}</h3>
     <h3>{{ category }}</h3>
@@ -74,19 +67,12 @@ async function deletePurchase() {
   border-radius: 0 30px 30px 0;
   margin-bottom: 10px;
   background-color: var(--color-background2);
-  color: var(--color-text);
   position: relative;
+  border-left: 4px solid v-bind("props.color");
 }
 
+h3,
 button {
   color: var(--color-text);
-}
-
-.feedPurchase__color {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 5px;
-  height: 50px;
 }
 </style>

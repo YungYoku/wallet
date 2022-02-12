@@ -40,7 +40,7 @@ function addCategory() {
 
       <input
         type="text"
-        placeholder="Название категории"
+        placeholder="Категория"
         class="name"
         v-model.trim="form.name"
       />

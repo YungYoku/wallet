@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import CategoriesArea from "@/components/categories/CategoriesArea.vue";
-import ChatWindow from "@/components/chat/ChatWindow.vue";
-import NewPurchase from "@/components/newPurchase/NewPurchase.vue";
-import TheChart from "@/components/budget/TheChart.vue";
-import FeedArea from "@/components/feed/FeedArea.vue";
+import CategoriesArea from "@/components/home/categories/CategoriesArea.vue";
+import ChatWindow from "@/components/home/chat/ChatWindow.vue";
+import NewPurchase from "@/components/home/newPurchase/NewPurchase.vue";
+import TheChart from "@/components/home/budget/TheChart.vue";
+import FeedArea from "@/components/home/feed/FeedArea.vue";
 </script>
 
 <template>
@@ -20,10 +20,10 @@ import FeedArea from "@/components/feed/FeedArea.vue";
 main {
   padding: 20px 10px;
   display: grid;
-  grid-template: calc(55vh - 120px) 45vh / 1fr 4fr 2fr;
+  grid-template: calc(55vh - 120px) 45vh / 300px 3fr 1fr;
   grid-template-areas:
-    "diagram feed categories"
-    "newPurchase feed chat";
+    "diagram feed newPurchase"
+    "categories feed chat";
   position: relative;
   grid-gap: 20px;
 }
@@ -56,7 +56,7 @@ main {
   main {
     padding: 20px 10px;
     display: grid;
-    grid-template: calc(55vh - 120px) 45vh / 1fr 1fr 1fr;
+    grid-template: calc(55vh - 120px) 45vh / 300px 1fr 1fr;
     grid-template-areas:
       "diagram categories newPurchase"
       "feed feed chat";

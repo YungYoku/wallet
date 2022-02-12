@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, onMounted, ref, watch } from "vue";
 import { useBudgetsStore } from "@/stores/budgets";
-import BudgetName from "@/components/budget/BudgetName.vue";
+import BudgetName from "@/components/home/budget/BudgetName.vue";
 import type { ChartData } from "@/interfaces/chartData";
 
 const budgetsStore = useBudgetsStore();

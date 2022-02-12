@@ -27,7 +27,7 @@ defineProps({
       ></div>
       <h3>{{ category }}</h3>
     </div>
-    <h3>Сумма: {{ price }}</h3>
+    <h3>{{ price }} ₽</h3>
   </div>
 </template>
 
@@ -51,10 +51,18 @@ defineProps({
   justify-content: flex-start;
 }
 
+.category > h3 {
+  line-height: 15px;
+}
+
 .category div div {
   border-radius: 15px;
   width: 30px;
   height: 30px;
   margin-right: 10px;
+}
+
+.category div > h3 {
+  line-height: 15px;
 }
 </style>

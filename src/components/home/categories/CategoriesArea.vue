@@ -7,6 +7,19 @@ import type { Category } from "@/interfaces/category";
 
 const budgetsStore = useBudgetsStore();
 
+function sortCategories(categories) {
+  for (let i = 0; i < categories.length; i++) {
+    for (let j = 0; j < categories.length - 1; j++) {
+      if (categories[j].price < categories[j + 1].price) {
+        let temp = categories[j];
+        categories[j] = categories[j + 1];
+        categories[j + 1] = temp;
+      }
+    }
+  }
+  return categories;
+}
+
 let categories = computed<Category[]>(() => {
   let _categories = budgetsStore.budget.categories;
   if (budgetsStore.budget.categories && budgetsStore.budget.categories[0]) {
@@ -21,7 +34,7 @@ let categories = computed<Category[]>(() => {
       }
     }
   }
-  return _categories;
+  return sortCategories(_categories);
 });
 </script>
 
