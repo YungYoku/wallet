@@ -22,8 +22,8 @@ let layout = computed<string>(() => {
 });
 
 const layouts: Layout = {
-  StandardLayout,
-  EmptyLayout,
+  StandardLayout: StandardLayout,
+  EmptyLayout: EmptyLayout,
 };
 
 let uid = computed<boolean>(() => logsStore.uid);
