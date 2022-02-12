@@ -1,8 +1,6 @@
-import type { VueElement } from "vue";
-
 export interface Layout {
-  StandardLayout: VueElement;
-  EmptyLayout: VueElement;
+  StandardLayout: Element;
+  EmptyLayout: Element;
 
-  [key: string]: VueElement;
+  [key: string]: Element;
 }
