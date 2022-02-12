@@ -73,6 +73,7 @@ async function deletePurchase() {
 
 h3,
 button {
+  line-height: 15px;
   user-select: none;
   color: var(--color-text);
 }

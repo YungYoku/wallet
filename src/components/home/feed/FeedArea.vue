@@ -33,6 +33,9 @@ const budgetsStore = useBudgetsStore();
   border-radius: 10px;
   background-color: var(--color-background-soft);
   box-shadow: 0 0 10px 1px var(--color-shadow);
+  display: grid;
+  grid-template: 50px auto / 1fr;
+  grid-gap: 10px;
 }
 
 .feedAreaPurchasesWrap {

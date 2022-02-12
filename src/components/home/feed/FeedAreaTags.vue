@@ -17,7 +17,6 @@ div {
   align-items: center;
   justify-items: center;
   padding: 10px 20px 10px 10px;
-  margin-bottom: 10px;
   border-radius: 10px 10px 0 0;
   background-color: var(--color-background2);
 }
