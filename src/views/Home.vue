@@ -2,7 +2,7 @@
 import CategoriesArea from "@/components/home/categories/CategoriesArea.vue";
 import ChatWindow from "@/components/home/chat/ChatWindow.vue";
 import NewPurchase from "@/components/home/newPurchase/NewPurchase.vue";
-import TheChart from "@/components/home/budget/TheChart.vue";
+import TheChart from "@/components/home/chart/TheChart.vue";
 import FeedArea from "@/components/home/feed/FeedArea.vue";
 </script>
 
@@ -10,8 +10,8 @@ import FeedArea from "@/components/home/feed/FeedArea.vue";
   <main>
     <categories-area class="categories" />
     <chat-window class="chat" />
-    <new-purchase class="newPurchase" />
-    <the-chart class="canvasWrap" />
+    <new-purchase class="purchase" />
+    <the-chart class="chart" />
     <feed-area class="feed" />
   </main>
 </template>
@@ -22,14 +22,14 @@ main {
   display: grid;
   grid-template: calc(55vh - 120px) 45vh / 300px 3fr 1fr;
   grid-template-areas:
-    "diagram feed newPurchase"
+    "chart feed purchase"
     "categories feed chat";
   position: relative;
   grid-gap: 20px;
 }
 
-.canvasWrap {
-  grid-area: diagram;
+.chart {
+  grid-area: chart;
 }
 
 .feed {
@@ -41,8 +41,8 @@ main {
   grid-area: categories;
 }
 
-.newPurchase {
-  grid-area: newPurchase;
+.purchase {
+  grid-area: purchase;
 }
 
 .chat {
@@ -58,7 +58,7 @@ main {
     display: grid;
     grid-template: calc(55vh - 120px) 45vh / 300px 1fr 1fr;
     grid-template-areas:
-      "diagram categories newPurchase"
+      "chart categories purchase"
       "feed feed chat";
     overflow: hidden;
     position: relative;
@@ -72,7 +72,7 @@ main {
     display: grid;
     grid-template: calc(55vh - 120px) 45vh / 1fr 1fr 1fr;
     grid-template-areas:
-      "diagram categories newPurchase"
+      "chart categories purchase"
       "feed feed chat";
     overflow: hidden;
     position: relative;

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, onMounted, ref, watch } from "vue";
 import { useBudgetsStore } from "@/stores/budgets";
-import BudgetName from "@/components/home/budget/BudgetName.vue";
+import BudgetName from "@/components/home/chart/BudgetName.vue";
 import type { ChartData } from "@/interfaces/chartData";
 
 const budgetsStore = useBudgetsStore();
@@ -132,16 +132,14 @@ async function drawRect() {
 </script>
 
 <template>
-  <div>
-    <aside>
-      <budget-name />
-      <div class="canvasWrap" v-if="budgetsStore.budget.balance">
-        <canvas class="diagram" width="300" height="300" ref="diagram"></canvas>
-      </div>
-      <div class="emptyCircle" v-else></div>
-      <span>Сумма: {{ budgetsStore.budget.balance }}</span>
-    </aside>
-  </div>
+  <aside>
+    <budget-name />
+    <div class="canvasWrap" v-if="budgetsStore.budget.balance">
+      <canvas class="diagram" width="300" height="300" ref="diagram"></canvas>
+    </div>
+    <div class="emptyCircle" v-else></div>
+    <span>Сумма: {{ budgetsStore.budget.balance }}</span>
+  </aside>
 </template>
 
 <style scoped>
