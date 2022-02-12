@@ -10,6 +10,7 @@ import { useBudgetsStore } from "@/stores/budgets";
 import { useLogsStore } from "@/stores/logs";
 import { useLoadingStore } from "@/stores/loading";
 import type { Budget } from "@/interfaces/budget";
+import type { Layout } from "@/interfaces/layout";
 
 const budgetsStore = useBudgetsStore();
 const logsStore = useLogsStore();
@@ -20,7 +21,7 @@ let layout = computed<string>(() => {
   return layout ? layout : "EmptyLayout";
 });
 
-const tabs = {
+const layouts: Layout = {
   StandardLayout,
   EmptyLayout,
 };
@@ -72,7 +73,7 @@ watch(bid, async () => {
 
 <template>
   <the-loading v-if="loadingStore.loading" />
-  <component v-if="!loadingStore.loading" :is="tabs[layout]">
+  <component v-if="!loadingStore.loading" :is="layouts[layout]">
     <router-view />
   </component>
 </template>
