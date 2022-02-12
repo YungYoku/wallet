@@ -54,7 +54,6 @@ function addCategory() {
 form {
   display: grid;
   grid-template: repeat(2, 50px) / 1fr;
-  margin-bottom: 10px;
   box-shadow: 0 0 10px 1px var(--color-shadow);
   border-radius: 10px;
 }
@@ -93,7 +92,7 @@ button {
   text-align: center;
   background-color: var(--color-background-soft);
   color: var(--color-text);
-  padding: 10px 40px 10px 10px;
+  padding: 10px 50px 10px 10px;
   transition: none;
   border-radius: 10px 10px 0 0;
 }

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import CategoriesArea from "@/components/home/categories/CategoriesArea.vue";
 import ChatWindow from "@/components/home/chat/ChatWindow.vue";
-import NewPurchase from "@/components/home/newPurchase/NewPurchase.vue";
+import NewPurchase from "@/components/home/purchase/NewPurchase.vue";
 import TheChart from "@/components/home/chart/TheChart.vue";
 import FeedArea from "@/components/home/feed/FeedArea.vue";
 </script>

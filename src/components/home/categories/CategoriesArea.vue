@@ -69,6 +69,8 @@ let categories = computed<Category[]>(() => {
   height: 100%;
   color: #ffffff;
   display: grid;
+  grid-template: 100px auto / 1fr;
+  grid-gap: 10px;
 }
 
 .areaItemsWrap {
