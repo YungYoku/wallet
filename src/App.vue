@@ -9,12 +9,15 @@ import { doc, onSnapshot } from "firebase/firestore";
 import { useBudgetsStore } from "@/stores/budgets";
 import { useLogsStore } from "@/stores/logs";
 import { useLoadingStore } from "@/stores/loading";
+import type { Budget } from "@/interfaces/budget";
 
 const budgetsStore = useBudgetsStore();
 const logsStore = useLogsStore();
 const loadingStore = useLoadingStore();
 
-let layout = computed(() => useRoute().meta.layout);
+let layout = computed(() => {
+  return useRoute().meta.layout ? useRoute().meta.layout : EmptyLayout;
+});
 
 const tabs = {
   StandardLayout,
@@ -40,7 +43,7 @@ async function getBudgetInfo() {
   if (bid.value) {
     await onSnapshot(doc(db, "budgets", bid.value), (data) => {
       if (data.exists()) {
-        budgetsStore.setBudget(data.data());
+        budgetsStore.setBudget(data.data() as Budget);
       }
     });
   }

@@ -75,7 +75,7 @@ function addPurchase() {
         <option
           v-for="item in budgetsStore.budget.categories"
           :value="item"
-          :key="item"
+          :key="item.name"
         >
           {{ item.name }}
         </option>

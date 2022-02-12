@@ -9,6 +9,12 @@ import type { MessageDate } from "@/interfaces/messageData";
 const budgetsStore = useBudgetsStore();
 const logsStore = useLogsStore();
 
+function dateFilter(date: MessageDate) {
+  const hours = date.hours > 9 ? date.hours : "0" + date.hours;
+  const minutes = date.minutes > 9 ? date.minutes : "0" + date.minutes;
+  return hours + ":" + minutes;
+}
+
 let chat = computed<Message[]>(() => {
   let _chat = budgetsStore.budget.chat;
   if (_chat) {
@@ -16,19 +22,13 @@ let chat = computed<Message[]>(() => {
   }
   return _chat;
 });
-
-function dateFilter(date: MessageDate) {
-  const hours = date.hours > 9 ? date.hours : "0" + date.hours;
-  const minutes = date.minutes > 9 ? date.minutes : "0" + date.minutes;
-  return hours + ":" + minutes;
-}
 </script>
 
 <template>
   <div class="messagesWindowWrap">
     <chat-area-message
       v-for="message in chat"
-      :key="message"
+      :key="message.message + dateFilter(message.date)"
       :name="message.name"
       :date="dateFilter(message.date)"
       :myName="logsStore.name"

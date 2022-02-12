@@ -53,7 +53,7 @@ let categories = computed<Category[]>(() => {
       <div class="areaItems">
         <categories-area-item
           v-for="category in categories"
-          :key="category"
+          :key="category.name + category.price"
           :color="category.color"
           :category="category.name"
           :price="category.price"

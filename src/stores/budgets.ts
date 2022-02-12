@@ -2,6 +2,7 @@ import { defineStore } from "pinia";
 import type { Budget } from "@/interfaces/budget";
 import type { Purchase } from "@/interfaces/purchase";
 import type { Category } from "@/interfaces/category";
+import type { Message } from "@/interfaces/message";
 
 export const useBudgetsStore = defineStore({
   id: "budgets",
@@ -10,7 +11,7 @@ export const useBudgetsStore = defineStore({
     budget: {
       balance: 0,
       categories: [] as Category[],
-      chat: [],
+      chat: [] as Message[],
       name: "",
       purchases: [] as Purchase[],
     },

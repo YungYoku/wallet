@@ -18,7 +18,7 @@ const budgetsStore = useBudgetsStore();
 
         <feed-area-purchase
           v-for="purchase in budgetsStore.budget.purchases"
-          :key="purchase"
+          :key="purchase.itemName + purchase.price"
           :item-name="purchase.itemName"
           :user-name="purchase.userName"
           :category="purchase.category"
