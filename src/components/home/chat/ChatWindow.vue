@@ -18,7 +18,7 @@ import ChatAreaInput from "./ChatAreaInput.vue";
   overflow: hidden;
   position: relative;
   grid-template: calc(100% - 60px) 60px / 1fr;
-  border-radius: 20px;
+  border-radius: 10px;
   box-shadow: 0 0 10px 1px var(--color-shadow);
 }
 </style>

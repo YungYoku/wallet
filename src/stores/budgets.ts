@@ -1,5 +1,7 @@
 import { defineStore } from "pinia";
 import type { Budget } from "@/interfaces/budget";
+import type { Purchase } from "@/interfaces/purchase";
+import type { Category } from "@/interfaces/category";
 
 export const useBudgetsStore = defineStore({
   id: "budgets",
@@ -7,10 +9,10 @@ export const useBudgetsStore = defineStore({
   state: () => ({
     budget: {
       balance: 0,
-      categories: [],
+      categories: [] as Category[],
       chat: [],
       name: "",
-      purchases: [],
+      purchases: [] as Purchase[],
     },
     id: localStorage.bid ? localStorage.bid : "",
     budgets: [],
