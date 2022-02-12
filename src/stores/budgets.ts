@@ -16,7 +16,7 @@ export const useBudgetsStore = defineStore({
       purchases: [] as Purchase[],
     },
     id: localStorage.bid ? localStorage.bid : "",
-    budgets: [],
+    budgets: [] as string[],
   }),
 
   getters: {},

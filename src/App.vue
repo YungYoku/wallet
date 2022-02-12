@@ -14,10 +14,9 @@ import type { Budget } from "@/interfaces/budget";
 const budgetsStore = useBudgetsStore();
 const logsStore = useLogsStore();
 const loadingStore = useLoadingStore();
+const route = useRoute();
 
-let layout = computed(() => {
-  return useRoute().meta.layout ? useRoute().meta.layout : EmptyLayout;
-});
+let layout = computed<string>(() => route.meta.layout as string);
 
 const tabs = {
   StandardLayout,
