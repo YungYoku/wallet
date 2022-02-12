@@ -42,7 +42,6 @@ defineProps({
   margin-bottom: 10px;
   background-color: var(--color-background2);
   color: var(--color-text);
-  user-select: none;
 }
 
 .category div {
@@ -51,7 +50,8 @@ defineProps({
   justify-content: flex-start;
 }
 
-.category > h3 {
+.category h3 {
+  user-select: none;
   line-height: 15px;
 }
 
@@ -60,9 +60,5 @@ defineProps({
   width: 30px;
   height: 30px;
   margin-right: 10px;
-}
-
-.category div > h3 {
-  line-height: 15px;
 }
 </style>

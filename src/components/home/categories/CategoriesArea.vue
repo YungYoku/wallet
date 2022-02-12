@@ -74,6 +74,7 @@ let categories = computed<Category[]>(() => {
 .areaItemsWrap {
   display: grid;
   overflow: hidden;
+  position: relative;
   border-radius: 10px;
 }
 
