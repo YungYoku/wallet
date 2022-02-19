@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from "vue";
-import CategoriesAreaNewItem from "./CategoriesAreaNewItem.vue";
+import CategoriesAreaCreate from "./CategoriesAreaCreate.vue";
 import CategoriesAreaItem from "./CategoriesAreaItem.vue";
 import { useBudgetsStore } from "@/stores/budgets";
 import type { Category } from "@/interfaces/category";
@@ -47,7 +47,7 @@ let categories = computed<Category[]>(() => {
 
 <template>
   <div class="categoriesArea">
-    <categories-area-new-item></categories-area-new-item>
+    <categories-area-create></categories-area-create>
 
     <div class="areaItemsWrap">
       <div class="areaItems">

@@ -1,48 +1,49 @@
 <script setup lang="ts">
-import { reactive } from "vue";
+import { ref } from "vue";
 import { db } from "@/main";
 import { arrayUnion, doc, updateDoc } from "firebase/firestore";
 import { useBudgetsStore } from "@/stores/budgets";
 
 const budgetsStore = useBudgetsStore();
 
-const form = reactive({
-  name: "",
-  color: "#9966cc",
-  price: 0,
-  isValid() {
-    return this.name && this.color;
-  },
-  reset() {
-    this.name = "";
-    this.color = "#9966cc";
-  },
-});
+let name = ref("");
+let color = ref("#9966cc");
 
-function addCategory() {
-  if (form.isValid()) {
-    updateDoc(doc(db, "budgets", budgetsStore.bid), {
-      categories: arrayUnion({
-        name: form.name,
-        color: form.color,
-        price: form.price,
-      }),
-    });
-    form.reset();
+function isValid() {
+  return name.value && color.value;
+}
+
+function reset() {
+  name.value = "";
+  color.value = "#9966cc";
+}
+
+function create() {
+  if (isValid()) {
+    if (budgetsStore.bid) {
+      updateDoc(doc(db, "budgets", budgetsStore.bid), {
+        categories: arrayUnion({
+          name: name.value,
+          color: color.value,
+          price: 0,
+        }),
+      });
+      reset();
+    }
   }
 }
 </script>
 
 <template>
-  <form class="newCategory" @submit.prevent="addCategory">
+  <form class="newCategory" @submit.prevent="create">
     <div>
-      <input type="color" class="color" v-model.trim="form.color" />
+      <input type="color" class="color" v-model.trim="color" />
 
       <input
         type="text"
         placeholder="Категория"
         class="name"
-        v-model.trim="form.name"
+        v-model.trim="name"
       />
     </div>
 
@@ -109,6 +110,6 @@ button {
 }
 
 button:hover {
-  background-color: v-bind("form.color");
+  background-color: v-bind("color");
 }
 </style>

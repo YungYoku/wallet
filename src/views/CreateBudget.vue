@@ -32,7 +32,7 @@ async function createBudget() {
     await updateDoc(doc(db, "users", logsStore.uid), {
       budgets: arrayUnion(budget.id),
     });
-    budgetsStore.setId(budget.name);
+    budgetsStore.setBid(budget.name);
     localStorage.bid = budget.id;
     await router.push("/");
   }

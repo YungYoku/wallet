@@ -1,66 +1,68 @@
 <script setup lang="ts">
 import { db } from "@/main";
 import { arrayUnion, doc, updateDoc } from "firebase/firestore";
-import { reactive } from "vue";
+import { reactive, ref } from "vue";
 import { useBudgetsStore } from "@/stores/budgets";
 
 const budgetsStore = useBudgetsStore();
 
-const purchase = reactive({
-  itemName: "",
+let itemName = ref("");
+let price = ref(0);
+let userName = ref("");
+let category = reactive({
+  color: "",
+  name: "Категория",
   price: 0,
-  userName: "",
-  category: {
+});
+
+function isValid() {
+  return (
+    itemName.value.length > 0 &&
+    price.value &&
+    price.value > 0 &&
+    userName.value &&
+    category &&
+    category.color &&
+    category.name !== "Категория"
+  );
+}
+
+function reset() {
+  itemName.value = "";
+  price.value = 0;
+  userName.value = "";
+  category = {
     color: "",
     name: "Категория",
     price: 0,
-  },
-  isValid() {
-    return (
-      this.itemName.length > 0 &&
-      this.price &&
-      this.price > 0 &&
-      this.userName &&
-      this.category &&
-      this.category.color &&
-      this.category.name !== "Категория"
-    );
-  },
-  reset() {
-    this.itemName = "";
-    this.price = 0;
-    this.userName = "";
-    this.category = {
-      color: "",
-      name: "Категория",
-      price: 0,
-    };
-  },
-});
+  };
+}
 
-function addPurchase() {
-  if (purchase.isValid()) {
-    updateDoc(doc(db, "budgets", budgetsStore.bid), {
-      purchases: arrayUnion({
-        itemName: purchase.itemName,
-        userName: purchase.userName,
-        category: purchase.category.name,
-        price: purchase.price,
-        color: purchase.category.color,
-      }),
-    });
-    purchase.reset();
+function create() {
+  if (isValid()) {
+    if (budgetsStore.bid) {
+      updateDoc(doc(db, "budgets", budgetsStore.bid), {
+        purchases: arrayUnion({
+          itemName: itemName.value,
+          userName: userName.value,
+          category: category.name,
+          price: price.value,
+          color: category.color,
+        }),
+      });
+      reset();
+    }
   }
 }
 </script>
 
 <template>
   <div>
-    <form @submit.prevent="addPurchase()">
-      <input type="text" placeholder="Товар" v-model.trim="purchase.itemName" />
-      <input type="text" placeholder="Имя" v-model.trim="purchase.userName" />
-      <input type="text" placeholder="Цена" v-model.number="purchase.price" />
-      <select v-model="purchase.category">
+    <form @submit.prevent="create">
+      <input type="text" placeholder="Товар" v-model.trim="itemName" />
+      <input type="text" placeholder="Имя" v-model.trim="userName" />
+      <input type="text" placeholder="Цена" v-model.number="price" />
+      <select v-model="category">
         <option
           :value="{
             color: '',

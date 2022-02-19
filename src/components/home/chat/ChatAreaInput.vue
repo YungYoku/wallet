@@ -8,7 +8,7 @@ import { useLogsStore } from "@/stores/logs";
 const budgetsStore = useBudgetsStore();
 const logsStore = useLogsStore();
 
-let message = ref<string>("");
+let message = ref("");
 
 function getDate() {
   return {
@@ -19,14 +19,16 @@ function getDate() {
 
 function sendMessage() {
   if (message.value) {
-    updateDoc(doc(db, "budgets", budgetsStore.bid), {
-      chat: arrayUnion({
-        message: message.value,
-        date: getDate(),
-        name: logsStore.name,
-      }),
-    });
-    message.value = "";
+    if (budgetsStore.bid) {
+      updateDoc(doc(db, "budgets", budgetsStore.bid), {
+        chat: arrayUnion({
+          message: message.value,
+          date: getDate(),
+          name: logsStore.name,
+        }),
+      });
+      message.value = "";
+    }
   }
 }
 </script>
