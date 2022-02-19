@@ -21,7 +21,7 @@ const form = reactive({
 
 function addCategory() {
   if (form.isValid()) {
-    updateDoc(doc(db, "budgets", budgetsStore.id), {
+    updateDoc(doc(db, "budgets", budgetsStore.bid), {
       categories: arrayUnion({
         name: form.name,
         color: form.color,

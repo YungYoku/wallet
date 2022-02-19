@@ -40,7 +40,7 @@ async function deletePurchase() {
       )
   );
 
-  await updateDoc(doc(db, "budgets", budgetsStore.id), {
+  await updateDoc(doc(db, "budgets", budgetsStore.bid), {
     purchases,
   });
 }

@@ -4,12 +4,9 @@ import TheLoading from "@/components/TheLoading.vue";
 import StandardLayout from "@/layouts/StandardLayout.vue";
 import EmptyLayout from "@/layouts/EmptyLayout.vue";
 import { useRoute } from "vue-router";
-import { db } from "@/main";
-import { doc, onSnapshot } from "firebase/firestore";
 import { useBudgetsStore } from "@/stores/budgets";
 import { useLogsStore } from "@/stores/logs";
 import { useLoadingStore } from "@/stores/loading";
-import type { Budget } from "@/interfaces/budget";
 import type { Layout } from "@/interfaces/layout";
 
 const budgetsStore = useBudgetsStore();
@@ -26,46 +23,24 @@ const layouts: Layout = {
   EmptyLayout,
 };
 
-let uid = computed<boolean>(() => logsStore.uid);
-let bid = computed<string>(() => budgetsStore.id);
+let bid = computed<string>(() => budgetsStore.bid);
 
-async function getUserInfo() {
-  await onSnapshot(doc(db, "users", logsStore.uid), (data) => {
-    if (data.exists()) {
-      budgetsStore.setBudgets(data.data().budgets);
-      logsStore.setName(data.data().name);
-      if (!bid.value) {
-        budgetsStore.setId(data.data().budgets[0]);
-      }
-    }
-  });
-}
-
-async function getBudgetInfo() {
-  if (bid.value) {
-    await onSnapshot(doc(db, "budgets", bid.value), (data) => {
-      if (data.exists()) {
-        budgetsStore.setBudget(data.data() as Budget);
-      }
-    });
-  }
-}
-
-async function getAllInfo() {
+function loadInfo() {
   if (logsStore.uid) {
     loadingStore.show();
-    await getUserInfo();
-    await getBudgetInfo();
+    budgetsStore.subscribeUserInfo();
+    budgetsStore.subscribeBudgetInfo();
     loadingStore.hide();
   }
 }
 
-watch(uid, () => getAllInfo(), { immediate: true });
+loadInfo();
+logsStore.$subscribe(() => loadInfo());
 
-watch(bid, async () => {
+watch(bid, () => {
   if (bid.value) {
     loadingStore.show();
-    await getBudgetInfo();
+    budgetsStore.subscribeBudgetInfo();
     loadingStore.hide();
   }
 });

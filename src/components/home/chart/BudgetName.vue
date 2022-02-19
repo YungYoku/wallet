@@ -7,9 +7,9 @@ const budgetsStore = useBudgetsStore();
 const loading = useLoadingStore();
 const router = useRouter();
 
-async function swapBudget(id: string) {
+async function swapBudget(bid: string) {
   loading.show();
-  budgetsStore.setId(id);
+  budgetsStore.setBid(bid);
   await router.push("/");
   loading.hide();
 }

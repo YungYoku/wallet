@@ -1,15 +1,8 @@
 <script setup lang="ts">
 import { reactive, ref } from "vue";
-import { useRouter } from "vue-router";
-import { db } from "@/main";
-import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
-import { doc, setDoc } from "firebase/firestore";
 import { useLogsStore } from "@/stores/logs";
-import { useLoadingStore } from "@/stores/loading";
 
 const logsStore = useLogsStore();
-const loadingStore = useLoadingStore();
-const router = useRouter();
 
 const form = reactive({
   email: "",
@@ -59,44 +52,29 @@ function changeComplexity() {
   } else {
     lineIII.value.style.backgroundColor = colors.additional;
   }
-  rightPass();
+
+  checkPass();
 }
 
-function rightPass() {
-  if (form.pass !== form.passRep) {
-    passDom.value.style.color = colors.error;
-    passRepDom.value.style.color = colors.error;
-  } else if (form.pass === "" && form.passRep === "") {
+function checkPass() {
+  if (form.pass === "" && form.passRep === "") {
     passDom.value.style.color = colors.additional;
     passRepDom.value.style.color = colors.additional;
-  } else {
+  } else if (form.pass === form.passRep) {
     passDom.value.style.color = colors.valid;
     passRepDom.value.style.color = colors.valid;
+  } else {
+    passDom.value.style.color = colors.error;
+    passRepDom.value.style.color = colors.error;
   }
 }
 
-async function sendInfo() {
+async function register() {
   if (form.isValid()) {
-    loadingStore.show();
-    await createUserWithEmailAndPassword(getAuth(), form.email, form.pass).then(
-      async (userCredential) => {
-        const user = userCredential.user;
-        const name = form.email;
-        await setDoc(doc(db, "users", user.uid), {
-          name,
-          budgets: [],
-        });
-        logsStore.setName(name);
-        logsStore.setUid(user.uid);
-        localStorage.setItem("uid", user.uid);
-        await router.push("/");
-        loadingStore.hide();
-      },
-      (err) => {
-        alert(err);
-        loadingStore.hide();
-      }
-    );
+    logsStore.register({
+      email: form.email,
+      pass: form.pass,
+    });
   }
 }
 </script>
@@ -105,7 +83,7 @@ async function sendInfo() {
   <div class="registration">
     <h2>Регистрация</h2>
 
-    <form @submit.prevent="sendInfo()">
+    <form @submit.prevent="register">
       <input
         type="text"
         placeholder="Почта"
@@ -119,7 +97,7 @@ async function sendInfo() {
         class="pass inputLine"
         ref="passDom"
         v-model.trim="form.pass"
-        @keyup="changeComplexity()"
+        @keyup="changeComplexity"
       />
 
       <input
@@ -128,7 +106,7 @@ async function sendInfo() {
         class="passRep inputLine"
         ref="passRepDom"
         v-model.trim="form.passRep"
-        @keyup="changeComplexity()"
+        @keyup="changeComplexity"
       />
 
       <div class="passComplexity">

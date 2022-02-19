@@ -1,14 +1,8 @@
 <script setup lang="ts">
 import { reactive } from "vue";
-import { useRouter } from "vue-router";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { useLogsStore } from "@/stores/logs";
-import { useLoadingStore } from "@/stores/loading";
 
 const logsStore = useLogsStore();
-const loadingStore = useLoadingStore();
-
-const router = useRouter();
 
 const form = reactive({
   email: "",
@@ -18,23 +12,12 @@ const form = reactive({
   },
 });
 
-async function sendInfo() {
+async function login() {
   if (form.isValid()) {
-    loadingStore.show();
-    await signInWithEmailAndPassword(getAuth(), form.email, form.pass).then(
-      async (userCredential) => {
-        const user = userCredential.user;
-        logsStore.setName(form.email);
-        logsStore.setUid(user.uid);
-        localStorage.uid = user.uid;
-        await router.push("/");
-        loadingStore.hide();
-      },
-      (err) => {
-        alert(err);
-        loadingStore.hide();
-      }
-    );
+    await logsStore.login({
+      email: form.email,
+      pass: form.pass,
+    });
   }
 }
 </script>
@@ -43,7 +26,7 @@ async function sendInfo() {
   <div class="login">
     <h2>Логин</h2>
 
-    <form @submit.prevent="sendInfo()">
+    <form @submit.prevent="login">
       <input
         type="text"
         placeholder="Почта"

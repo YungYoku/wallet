@@ -19,7 +19,7 @@ function getDate() {
 
 function sendMessage() {
   if (message.value) {
-    updateDoc(doc(db, "budgets", budgetsStore.id), {
+    updateDoc(doc(db, "budgets", budgetsStore.bid), {
       chat: arrayUnion({
         message: message.value,
         date: getDate(),

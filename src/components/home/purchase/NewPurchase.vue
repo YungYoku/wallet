@@ -40,7 +40,7 @@ const purchase = reactive({
 
 function addPurchase() {
   if (purchase.isValid()) {
-    updateDoc(doc(db, "budgets", budgetsStore.id), {
+    updateDoc(doc(db, "budgets", budgetsStore.bid), {
       purchases: arrayUnion({
         itemName: purchase.itemName,
         userName: purchase.userName,
