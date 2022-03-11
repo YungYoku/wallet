@@ -19,7 +19,7 @@ const budget = reactive({
   },
 });
 
-async function loginBudget() {
+async function joinBudget() {
   if (budget.isValid()) {
     budget.id = budget.name + "-" + budget.pass;
     await updateDoc(doc(db, "users", logsStore.uid), {
@@ -34,7 +34,7 @@ async function loginBudget() {
 
 <template>
   <div class="joinBudget">
-    <form @submit.prevent="loginBudget()">
+    <form @submit.prevent="joinBudget">
       <input
         class="name"
         type="text"
@@ -48,6 +48,7 @@ async function loginBudget() {
         placeholder="Пароль"
         v-model.trim="budget.pass"
       />
+
       <button type="submit">Войти</button>
     </form>
   </div>
