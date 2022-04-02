@@ -46,6 +46,8 @@
     --color-heading: var(--vt-c-text-light-1);
     --color-text: var(--vt-c-text-light-2);
 
+    --color-loading: var(--vt-c-black-soft);
+
     --section-gap: 160px;
 }
 
@@ -66,6 +68,8 @@
 
     --color-heading: var(--vt-c-text-dark-1);
     --color-text: var(--vt-c-text-dark-1);
+
+    --color-loading: var(--vt-c-white-soft);
 }
 
 *,
@@ -125,4 +129,21 @@ button {
     cursor: pointer;
     color: white;
     font-size: 16px;
+}
+
+img, picture, video, canvas, svg {
+    display: block;
+    max-width: 100%;
+}
+
+input, button, textarea, select {
+    font: inherit;
+}
+
+p, h1, h2, h3, h4, h5, h6 {
+    overflow-wrap: break-word;
+}
+
+::selection {
+    background-color: #999999;
 }

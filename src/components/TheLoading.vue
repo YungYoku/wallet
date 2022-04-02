@@ -30,21 +30,11 @@
 .loadingCircle {
   width: 50px;
   height: 50px;
-  background-color: var(--color-heading);
+  background-color: transparent;
+  border: 3px solid var(--color-loading);
   border-radius: 50%;
   position: relative;
   z-index: 9;
-}
-
-.loadingCircle::after {
-  content: "";
-  position: absolute;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  top: 5px;
-  left: 5px;
-  background-color: var(--color-background2);
 }
 
 .loadingCircle::before {

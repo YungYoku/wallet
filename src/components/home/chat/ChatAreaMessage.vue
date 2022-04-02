@@ -42,6 +42,7 @@ defineProps({
   align-items: center;
   position: relative;
   margin-top: 10px;
+  user-select: none;
 }
 
 .messageLeft {

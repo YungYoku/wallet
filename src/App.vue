@@ -48,7 +48,7 @@ watch(bid, () => {
 
 <template>
   <the-loading v-if="loadingStore.loading" />
-  <component :is="layouts[layout]" v-if="!loadingStore.loading">
+  <component :is="layouts[layout]" v-else>
     <router-view />
   </component>
 </template>
@@ -57,5 +57,6 @@ watch(bid, () => {
 #app {
   height: 100vh;
   background: var(--color-body);
+  isolation: isolate;
 }
 </style>
