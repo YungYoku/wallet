@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import { computed, watch } from "vue";
 import TheLoading from "@/components/TheLoading.vue";
 import StandardLayout from "@/layouts/StandardLayout.vue";
@@ -48,14 +48,12 @@ watch(bid, () => {
 
 <template>
   <the-loading v-if="loadingStore.loading" />
-  <component v-if="!loadingStore.loading" :is="layouts[layout]">
+  <component :is="layouts[layout]" v-if="!loadingStore.loading">
     <router-view />
   </component>
 </template>
 
 <style>
-@import "@/assets/base.css";
-
 #app {
   height: 100vh;
   background: var(--color-body);

@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import { db } from "@/main";
 import { doc, updateDoc } from "firebase/firestore";
 import { useBudgetsStore } from "@/stores/budgets";

@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import CategoriesArea from "@/components/home/categories/CategoriesArea.vue";
 import ChatWindow from "@/components/home/chat/ChatWindow.vue";
 import NewPurchase from "@/components/home/purchase/NewPurchase.vue";

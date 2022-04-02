@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import { reactive } from "vue";
 import { useRouter } from "vue-router";
 import { db } from "@/main";
@@ -36,17 +36,17 @@ async function joinBudget() {
   <div class="joinBudget">
     <form @submit.prevent="joinBudget">
       <input
-        class="name"
-        type="text"
-        placeholder="Название бюджета"
         v-model.trim="budget.name"
+        class="name"
+        placeholder="Название бюджета"
+        type="text"
       />
 
       <input
-        class="password"
-        type="password"
-        placeholder="Пароль"
         v-model.trim="budget.pass"
+        class="password"
+        placeholder="Пароль"
+        type="password"
       />
 
       <button type="submit">Войти</button>

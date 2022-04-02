@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import { db } from "@/main";
 import { arrayUnion, doc, updateDoc } from "firebase/firestore";
 import { reactive, ref } from "vue";
@@ -59,9 +59,9 @@ function create() {
 <template>
   <div>
     <form @submit.prevent="create">
-      <input type="text" placeholder="Товар" v-model.trim="itemName" />
-      <input type="text" placeholder="Имя" v-model.trim="userName" />
-      <input type="text" placeholder="Цена" v-model.number="price" />
+      <input v-model.trim="itemName" placeholder="Товар" type="text" />
+      <input v-model.trim="userName" placeholder="Имя" type="text" />
+      <input v-model.number="price" placeholder="Цена" type="text" />
       <select v-model="category">
         <option
           :value="{
@@ -76,8 +76,8 @@ function create() {
         </option>
         <option
           v-for="item in budgetsStore.budget.categories"
-          :value="item"
           :key="item.name"
+          :value="item"
         >
           {{ item.name }}
         </option>

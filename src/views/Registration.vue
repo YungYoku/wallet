@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import { reactive, ref } from "vue";
 import { useLogsStore } from "@/stores/logs";
 
@@ -85,44 +85,44 @@ async function register() {
 
     <form @submit.prevent="register">
       <input
-        type="text"
-        placeholder="Почта"
-        class="email inputLine"
         v-model.trim="form.email"
+        class="email inputLine"
+        placeholder="Почта"
+        type="text"
       />
 
       <input
-        type="password"
-        placeholder="Пароль"
-        class="pass inputLine"
         ref="passDom"
         v-model.trim="form.pass"
+        class="pass inputLine"
+        placeholder="Пароль"
+        type="password"
         @keyup="changeComplexity"
       />
 
       <input
-        type="password"
-        placeholder="Повторите пароль"
-        class="passRep inputLine"
         ref="passRepDom"
         v-model.trim="form.passRep"
+        class="passRep inputLine"
+        placeholder="Повторите пароль"
+        type="password"
         @keyup="changeComplexity"
       />
 
       <div class="passComplexity">
-        <span class="passComplexity__line" ref="lineI"></span>
-        <span class="passComplexity__line" ref="lineII"></span>
-        <span class="passComplexity__line" ref="lineIII"></span>
+        <span ref="lineI" class="passComplexity__line"></span>
+        <span ref="lineII" class="passComplexity__line"></span>
+        <span ref="lineIII" class="passComplexity__line"></span>
       </div>
 
       <label class="rules">
-        <input type="checkbox" v-model="form.rules" />
+        <input v-model="form.rules" type="checkbox" />
         Я соглсаен с правилами.
       </label>
 
-      <button type="submit" class="submitBtn">Отправить</button>
+      <button class="submitBtn" type="submit">Отправить</button>
 
-      <router-link to="/login" class="swapMode">
+      <router-link class="swapMode" to="/login">
         <h5>ЛОГИН</h5>
       </router-link>
     </form>

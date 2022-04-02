@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import ChatArea from "./ChatArea.vue";
 import ChatAreaInput from "./ChatAreaInput.vue";
 </script>

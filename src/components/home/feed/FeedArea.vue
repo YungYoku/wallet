@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import FeedAreaPurchase from "./FeedAreaPurchase.vue";
 import { useBudgetsStore } from "@/stores/budgets";
 import FeedAreaTags from "@/components/home/feed/FeedAreaTags.vue";
@@ -15,11 +15,11 @@ const budgetsStore = useBudgetsStore();
         <feed-area-purchase
           v-for="purchase in budgetsStore.budget.purchases"
           :key="purchase.itemName + purchase.price"
-          :item-name="purchase.itemName"
-          :user-name="purchase.userName"
           :category="purchase.category"
-          :price="purchase.price"
           :color="purchase.color"
+          :item-name="purchase.itemName"
+          :price="purchase.price"
+          :user-name="purchase.userName"
         />
       </div>
     </div>

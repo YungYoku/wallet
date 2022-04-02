@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import { ref } from "vue";
 import { db } from "@/main";
 import { arrayUnion, doc, updateDoc } from "firebase/firestore";
@@ -35,9 +35,9 @@ function sendMessage() {
 
 <template>
   <form @submit.prevent="sendMessage()">
-    <input type="text" v-model.trim="message" placeholder="Сообщение" />
+    <input v-model.trim="message" placeholder="Сообщение" type="text" />
     <button type="submit">
-      <img src="../../../assets/images/send.png" alt="Send" />
+      <img alt="Send" src="../../../assets/images/send.png" />
     </button>
   </form>
 </template>

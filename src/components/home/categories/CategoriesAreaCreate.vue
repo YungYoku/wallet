@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import { ref } from "vue";
 import { db } from "@/main";
 import { arrayUnion, doc, updateDoc } from "firebase/firestore";
@@ -37,13 +37,13 @@ function create() {
 <template>
   <form class="newCategory" @submit.prevent="create">
     <div>
-      <input type="color" class="color" v-model.trim="color" />
+      <input v-model.trim="color" class="color" type="color" />
 
       <input
-        type="text"
-        placeholder="Категория"
-        class="name"
         v-model.trim="name"
+        class="name"
+        placeholder="Категория"
+        type="text"
       />
     </div>
 

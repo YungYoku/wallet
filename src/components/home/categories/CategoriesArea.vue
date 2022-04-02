@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import { computed } from "vue";
 import CategoriesAreaCreate from "./CategoriesAreaCreate.vue";
 import CategoriesAreaItem from "./CategoriesAreaItem.vue";
@@ -54,8 +54,8 @@ let categories = computed<Category[]>(() => {
         <categories-area-item
           v-for="category in categories"
           :key="category.name + category.price"
-          :color="category.color"
           :category="category.name"
+          :color="category.color"
           :price="category.price"
         ></categories-area-item>
       </div>

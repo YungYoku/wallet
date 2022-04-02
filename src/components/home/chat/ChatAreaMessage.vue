@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 defineProps({
   name: {
     type: String,
@@ -19,11 +19,11 @@ defineProps({
 
 <template>
   <div
-    class="messageWrap"
     :class="{
       messageRight: myName === name,
       messageLeft: myName !== name,
     }"
+    class="messageWrap"
   >
     <div class="messageWrapWrap">
       <div class="nameAndDate">

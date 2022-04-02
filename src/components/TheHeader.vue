@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import { useRouter } from "vue-router";
 import { useBudgetsStore } from "@/stores/budgets";
 import { useLogsStore } from "@/stores/logs";

@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import { useRouter } from "vue-router";
 import { useBudgetsStore } from "@/stores/budgets";
 import { useLoadingStore } from "@/stores/loading";
@@ -19,17 +19,17 @@ async function swapBudget(bid: string) {
   <div class="budgetWrap">
     <div class="budget-div">
       <div
-        class="budget-nav"
         :style="{
           borderRadius: budgetsStore.budgets[1] ? '10px 10px 0 0' : '10px',
         }"
+        class="budget-nav"
       >
         <span>
           {{ budgetsStore.budget.name ? budgetsStore.budget.name : "Бюджет" }}
         </span>
       </div>
 
-      <div class="budget-content" v-if="budgetsStore.budgets[1]">
+      <div v-if="budgetsStore.budgets[1]" class="budget-content">
         <button
           v-for="budget in budgetsStore.budgets"
           :key="budget"

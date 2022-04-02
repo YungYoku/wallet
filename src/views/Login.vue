@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import { reactive } from "vue";
 import { useLogsStore } from "@/stores/logs";
 
@@ -28,22 +28,22 @@ async function login() {
 
     <form @submit.prevent="login">
       <input
-        type="text"
-        placeholder="Почта"
-        class="email inputLine"
         v-model.trim="form.email"
+        class="email inputLine"
+        placeholder="Почта"
+        type="text"
       />
 
       <input
-        type="password"
-        placeholder="Пароль"
-        class="pass inputLine"
         v-model.trim="form.pass"
+        class="pass inputLine"
+        placeholder="Пароль"
+        type="password"
       />
 
-      <button type="submit" class="submitBtn">Войти</button>
+      <button class="submitBtn" type="submit">Войти</button>
 
-      <router-link to="/registration" class="swapMode">
+      <router-link class="swapMode" to="/registration">
         <h5>РЕГИСТРАЦИЯ</h5>
       </router-link>
     </form>

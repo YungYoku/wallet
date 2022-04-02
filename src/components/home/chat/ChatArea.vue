@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import { computed } from "vue";
 import ChatAreaMessage from "./ChatAreaMessage.vue";
 import { useBudgetsStore } from "@/stores/budgets";
@@ -29,9 +29,9 @@ let chat = computed<Message[]>(() => {
     <chat-area-message
       v-for="message in chat"
       :key="message.message + dateFilter(message.date)"
-      :name="message.name"
       :date="dateFilter(message.date)"
       :myName="logsStore.name"
+      :name="message.name"
     >
       <h5>
         {{ message.message }}
