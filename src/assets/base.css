@@ -1,3 +1,5 @@
+@import "./fonts/fonts.css";
+
 :root {
     --vt-c-header-black: #19171a;
     --vt-c-header-white: #eeeeee;
@@ -64,27 +66,6 @@
 
     --color-heading: var(--vt-c-text-dark-1);
     --color-text: var(--vt-c-text-dark-1);
-}
-
-@font-face {
-    font-family: "Montserrat Alternates";
-    src: url("fonts/MontserratAlternates-Regular.ttf") format("truetype");
-    font-weight: 400;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: "Montserrat Alternates";
-    src: url("fonts/MontserratAlternates-SemiBold.ttf") format("truetype");
-    font-weight: 600;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: "Montserrat Alternates";
-    src: url("fonts/MontserratAlternates-Bold.ttf") format("truetype");
-    font-weight: 700;
-    font-style: normal;
 }
 
 *,
