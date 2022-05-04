@@ -28,10 +28,10 @@
 }
 
 .loadingCircle {
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   background-color: transparent;
-  border: 3px solid var(--color-loading);
+  border: 1px solid var(--color-loading);
   border-radius: 50%;
   position: relative;
   z-index: 9;
@@ -40,11 +40,12 @@
 .loadingCircle::before {
   content: "";
   position: absolute;
-  width: 40px;
-  height: 40px;
-  top: -20px;
-  left: -20px;
+  width: 20px;
+  height: 20px;
+  top: -10px;
+  left: -10px;
   background-color: var(--color-background2);
+  animation: bgRotate 1s linear infinite alternate;
 }
 
 @keyframes circleRotate {
@@ -53,6 +54,21 @@
   }
   to {
     transform: rotate(360deg);
+  }
+}
+
+@keyframes bgRotate {
+  from {
+    width: 20px;
+    height: 20px;
+    top: -10px;
+    left: -10px;
+  }
+  to {
+    width: 70px;
+    height: 70px;
+    top: -40px;
+    left: -40px;
   }
 }
 </style>

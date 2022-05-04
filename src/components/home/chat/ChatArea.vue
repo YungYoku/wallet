@@ -49,7 +49,7 @@ let chat = computed<Message[]>(() => {
   top: 0;
   left: 0;
   display: flex;
-  overflow-y: scroll;
+  overflow-y: auto;
   overflow-x: hidden;
   flex-direction: column-reverse;
   background-color: var(--color-background-soft);

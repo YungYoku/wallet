@@ -47,18 +47,16 @@ let categories = computed<Category[]>(() => {
 
 <template>
   <div class="categoriesArea">
-    <categories-area-create></categories-area-create>
+    <categories-area-create />
 
-    <div class="areaItemsWrap">
-      <div class="areaItems">
-        <categories-area-item
-          v-for="category in categories"
-          :key="category.name + category.price"
-          :category="category.name"
-          :color="category.color"
-          :price="category.price"
-        ></categories-area-item>
-      </div>
+    <div class="areaItems">
+      <categories-area-item
+        v-for="category in categories"
+        :key="category.name + category.price"
+        :category="category.name"
+        :color="category.color"
+        :price="category.price"
+      />
     </div>
   </div>
 </template>
@@ -73,21 +71,14 @@ let categories = computed<Category[]>(() => {
   grid-gap: 10px;
 }
 
-.areaItemsWrap {
-  display: grid;
-  overflow: hidden;
-  position: relative;
-  border-radius: 10px;
-}
-
 .areaItems {
-  overflow-y: scroll;
-  overflow-x: hidden;
   position: relative;
-  width: calc(100% + 8px);
+  overflow-y: auto;
+  overflow-x: hidden;
   top: 0;
   left: 0;
   display: flex;
   flex-direction: column;
+  border-radius: 10px;
 }
 </style>

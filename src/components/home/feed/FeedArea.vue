@@ -10,18 +10,16 @@ const budgetsStore = useBudgetsStore();
   <div class="feedArea">
     <feed-area-tags />
 
-    <div class="feedAreaPurchasesWrap">
-      <div class="feedAreaPurchases">
-        <feed-area-purchase
-          v-for="purchase in budgetsStore.budget.purchases"
-          :key="purchase.itemName + purchase.price"
-          :category="purchase.category"
-          :color="purchase.color"
-          :item-name="purchase.itemName"
-          :price="purchase.price"
-          :user-name="purchase.userName"
-        />
-      </div>
+    <div class="feedAreaPurchases">
+      <feed-area-purchase
+        v-for="purchase in budgetsStore.budget.purchases"
+        :key="purchase.itemName + purchase.price"
+        :category="purchase.category"
+        :color="purchase.color"
+        :item-name="purchase.itemName"
+        :price="purchase.price"
+        :user-name="purchase.userName"
+      />
     </div>
   </div>
 </template>
@@ -38,17 +36,10 @@ const budgetsStore = useBudgetsStore();
   grid-gap: 10px;
 }
 
-.feedAreaPurchasesWrap {
-  display: grid;
-  overflow: hidden;
-  position: relative;
-}
-
 .feedAreaPurchases {
-  overflow-y: scroll;
+  overflow-y: auto;
   overflow-x: hidden;
   position: relative;
-  width: calc(100% + 8px);
   top: 0;
   left: 0;
   display: flex;
