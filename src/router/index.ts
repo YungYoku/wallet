@@ -6,30 +6,33 @@ const router = createRouter({
     {
       path: "/:pathMatch(.*)*",
       name: "Home",
-      component: () => import("@/views/Home.vue"),
+      component: () => import("@/views/HomeView.vue"),
       meta: {
         layout: "StandardLayout",
         auth: true,
       },
     },
+
     {
       path: "/login",
       name: "Login",
-      component: () => import("@/views/Login.vue"),
+      component: () => import("@/views/LoginView.vue"),
       meta: {
         layout: "EmptyLayout",
         auth: false,
       },
     },
+
     {
-      path: "/registration",
+      path: "/reg",
       name: "Registration",
-      component: () => import("@/views/Registration.vue"),
+      component: () => import("@/views/RegView.vue"),
       meta: {
         layout: "EmptyLayout",
         auth: false,
       },
     },
+
     {
       path: "/create",
       name: "CreateBudget",
@@ -39,6 +42,7 @@ const router = createRouter({
         auth: true,
       },
     },
+
     {
       path: "/join",
       name: "JoinBudget",
@@ -48,6 +52,7 @@ const router = createRouter({
         auth: true,
       },
     },
+
     {
       path: "/404",
       name: "404",

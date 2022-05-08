@@ -43,7 +43,7 @@ async function login() {
 
       <button class="submitBtn" type="submit">Войти</button>
 
-      <router-link class="swapMode" to="/registration">
+      <router-link class="swapMode" to="/reg">
         <h5>РЕГИСТРАЦИЯ</h5>
       </router-link>
     </form>
