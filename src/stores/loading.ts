@@ -4,7 +4,7 @@ export const useLoadingStore = defineStore({
   id: "loading",
 
   state: () => ({
-    loading: true,
+    loading: false,
   }),
 
   getters: {},

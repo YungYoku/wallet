@@ -6,6 +6,7 @@ import type { Message } from "@/interfaces/message";
 import { doc, onSnapshot } from "firebase/firestore";
 import { db } from "@/main";
 import { useLogsStore } from "@/stores/logs";
+import { useLoadingStore } from "@/stores/loading";
 
 export const useBudgetsStore = defineStore({
   id: "budgets",
@@ -25,9 +26,34 @@ export const useBudgetsStore = defineStore({
   getters: {},
 
   actions: {
-    subscribeUserInfo() {
+    setBid(bid: string) {
+      const loadingStore = useLoadingStore();
+
+      this.bid = bid;
+      loadingStore.show();
+      this.subscribeBudgetInfo().then(() => {
+        loadingStore.hide();
+      });
+    },
+
+    subscribeInfo() {
       const logs = useLogsStore();
-      onSnapshot(doc(db, "users", logs.uid), (data) => {
+      if (logs.uid) {
+        const loadingStore = useLoadingStore();
+
+        loadingStore.show();
+        this.subscribeUserInfo().then(() => {
+          this.subscribeBudgetInfo().then(() => {
+            loadingStore.hide();
+          });
+        });
+      }
+    },
+
+    async subscribeUserInfo() {
+      const logs = useLogsStore();
+
+      await onSnapshot(doc(db, "users", logs.uid), (data) => {
         if (data.exists()) {
           this.setBudgets(data.data().budgets);
           this.bid = data.data().budgets[0];
@@ -35,9 +61,9 @@ export const useBudgetsStore = defineStore({
       });
     },
 
-    subscribeBudgetInfo() {
+    async subscribeBudgetInfo() {
       if (this.bid) {
-        onSnapshot(doc(db, "budgets", this.bid), (data) => {
+        await onSnapshot(doc(db, "budgets", this.bid), (data) => {
           if (data.exists()) {
             this.setBudget(data.data() as Budget);
           }
@@ -45,11 +71,7 @@ export const useBudgetsStore = defineStore({
       }
     },
 
-    setBid(bid: string): void {
-      this.bid = bid;
-    },
-
-    setBudget(budget: Budget): void {
+    setBudget(budget: Budget) {
       this.budget = budget;
       if (budget.purchases) {
         for (const purchase of budget.purchases) {
@@ -58,7 +80,7 @@ export const useBudgetsStore = defineStore({
       }
     },
 
-    setBudgets(budgets: string[]): void {
+    setBudgets(budgets: string[]) {
       this.budgets = budgets;
     },
   },

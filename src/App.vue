@@ -1,21 +1,20 @@
 <script lang="ts" setup>
-import { computed, watch } from "vue";
+import { computed } from "vue";
 import TheLoading from "@/components/TheLoading.vue";
 import StandardLayout from "@/layouts/StandardLayout.vue";
 import EmptyLayout from "@/layouts/EmptyLayout.vue";
 import { useRoute } from "vue-router";
 import { useBudgetsStore } from "@/stores/budgets";
-import { useLogsStore } from "@/stores/logs";
 import { useLoadingStore } from "@/stores/loading";
 import type { Layout } from "@/interfaces/layout";
 
 const budgetsStore = useBudgetsStore();
-const logsStore = useLogsStore();
 const loadingStore = useLoadingStore();
 
+const route = useRoute();
+
 let layout = computed<string>(() => {
-  let layout: string = useRoute().meta.layout as string;
-  return layout ? layout : "EmptyLayout";
+  return (route.meta.layout as string) || "EmptyLayout";
 });
 
 const layouts: Layout = {
@@ -23,27 +22,7 @@ const layouts: Layout = {
   EmptyLayout,
 };
 
-let bid = computed<string>(() => budgetsStore.bid);
-
-function loadInfo() {
-  if (logsStore.uid) {
-    loadingStore.show();
-    budgetsStore.subscribeUserInfo();
-    budgetsStore.subscribeBudgetInfo();
-    loadingStore.hide();
-  }
-}
-
-loadInfo();
-logsStore.$subscribe(() => loadInfo());
-
-watch(bid, () => {
-  if (bid.value) {
-    loadingStore.show();
-    budgetsStore.subscribeBudgetInfo();
-    loadingStore.hide();
-  }
-});
+budgetsStore.subscribeInfo();
 </script>
 
 <template>

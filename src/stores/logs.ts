@@ -8,6 +8,7 @@ import { useLoadingStore } from "@/stores/loading";
 import { doc, setDoc } from "firebase/firestore";
 import { db } from "@/main";
 import router from "@/router";
+import { useBudgetsStore } from "@/stores/budgets";
 
 export const useLogsStore = defineStore({
   id: "logs",
@@ -20,6 +21,14 @@ export const useLogsStore = defineStore({
   getters: {},
 
   actions: {
+    setUid(uid: string) {
+      const loadingStore = useBudgetsStore();
+
+      this.uid = uid;
+      localStorage.uid = uid;
+      loadingStore.subscribeInfo();
+    },
+
     login({ email, pass }: { email: string; pass: string }) {
       const loading = useLoadingStore();
       loading.show();
@@ -27,8 +36,7 @@ export const useLogsStore = defineStore({
         async (userCredential) => {
           const user = userCredential.user;
           this.name = email;
-          this.uid = user.uid;
-          localStorage.uid = user.uid;
+          this.setUid(user.uid);
           await router.push("/");
           loading.hide();
         },
@@ -51,8 +59,7 @@ export const useLogsStore = defineStore({
             budgets: [],
           });
           this.name = email;
-          this.uid = user.uid;
-          localStorage.setItem("uid", user.uid);
+          this.setUid(user.uid);
           await router.push("/");
           loading.hide();
         },
