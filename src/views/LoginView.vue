@@ -78,7 +78,7 @@ form {
 h2 {
   font-size: 70px;
   font-weight: 500;
-  color: #999999;
+  color: var(--color-text);
   text-align: center;
   margin: 0 0 60px 0;
 }
@@ -99,10 +99,10 @@ h2 {
 }
 
 .submitBtn {
-  padding: 15px 0;
+  padding: 10px 0;
   background-color: #9966cc;
   border: none;
-  border-radius: 30px;
+  border-radius: 20px;
   color: white;
   font-size: 24px;
   font-weight: 400;
