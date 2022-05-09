@@ -27,6 +27,7 @@ async function swapBudget(bid: string) {
         <span>
           {{ budgetsStore.budget.name ? budgetsStore.budget.name : "Бюджет" }}
         </span>
+        <span class="arrow">></span>
       </div>
 
       <div v-if="budgetsStore.budgets[1]" class="budget-content">
@@ -70,6 +71,7 @@ async function swapBudget(bid: string) {
   user-select: none;
   z-index: 10;
   border-radius: 10px;
+  gap: 10px;
 }
 
 .budget-content {
@@ -95,6 +97,14 @@ async function swapBudget(bid: string) {
 .budget-nav span {
   font-size: 16px;
   text-align: center;
+}
+
+.budget-nav span.arrow {
+  transform: rotate(90deg);
+}
+
+.budget-div:hover .budget-nav span.arrow {
+  transform: rotate(-90deg);
 }
 
 .budget-content button {

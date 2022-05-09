@@ -1,15 +1,15 @@
 <script lang="ts" setup>
 import { db } from "@/main";
 import { arrayUnion, doc, updateDoc } from "firebase/firestore";
-import { reactive, ref } from "vue";
+import { ref } from "vue";
 import { useBudgetsStore } from "@/stores/budgets";
 
 const budgetsStore = useBudgetsStore();
 
 let itemName = ref("");
-let price = ref(0);
 let userName = ref("");
-let category = reactive({
+let price = ref(0);
+let category = ref({
   color: "",
   name: "Категория",
   price: 0,
@@ -18,12 +18,10 @@ let category = reactive({
 function isValid() {
   return (
     itemName.value.length > 0 &&
+    userName.value.length &&
     price.value &&
     price.value > 0 &&
-    userName.value &&
-    category &&
-    category.color &&
-    category.name !== "Категория"
+    category.value.name !== "Категория"
   );
 }
 
@@ -31,7 +29,7 @@ function reset() {
   itemName.value = "";
   price.value = 0;
   userName.value = "";
-  category = {
+  category.value = {
     color: "",
     name: "Категория",
     price: 0,
@@ -45,9 +43,9 @@ function create() {
         purchases: arrayUnion({
           itemName: itemName.value,
           userName: userName.value,
-          category: category.name,
+          category: category.value.name,
           price: price.value,
-          color: category.color,
+          color: category.value.color,
         }),
       });
       reset();

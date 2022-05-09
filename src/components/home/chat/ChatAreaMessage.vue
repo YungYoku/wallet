@@ -64,6 +64,10 @@ defineProps({
   user-select: text;
 }
 
+.messageWrapWrap:hover {
+  background-color: var(--color-background-mute);
+}
+
 .nameAndDate {
   display: flex;
   align-items: center;

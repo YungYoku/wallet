@@ -44,6 +44,10 @@ defineProps({
   color: var(--color-text);
 }
 
+.category:hover {
+  background-color: var(--color-background-mute);
+}
+
 .category div {
   display: flex;
   align-items: center;

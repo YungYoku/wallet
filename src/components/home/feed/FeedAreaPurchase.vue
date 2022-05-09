@@ -52,7 +52,9 @@ async function deletePurchase() {
     <h3>{{ itemName }}</h3>
     <h3>{{ category }}</h3>
     <h3>{{ price }} руб</h3>
-    <button @click="deletePurchase()">Удалить</button>
+    <button @click="deletePurchase">
+      <img src="@/assets/img/close.png" alt="Удалить" />
+    </button>
   </div>
 </template>
 
@@ -60,15 +62,20 @@ async function deletePurchase() {
 .feedPurchase {
   height: 50px;
   display: grid;
-  grid-template: 30px / 2fr 2fr 2fr 2fr 1fr;
+  grid-template: 30px / 2fr 2fr 2fr 2fr 32px;
   align-items: center;
   justify-items: center;
+  grid-gap: 10px;
   padding: 10px 20px 10px 10px;
-  border-radius: 0 30px 30px 0;
+  border-radius: 10px;
   margin-bottom: 10px;
   background-color: var(--color-background2);
   position: relative;
   border-left: 4px solid v-bind("props.color");
+}
+
+.feedPurchase:hover {
+  background-color: var(--color-background-mute);
 }
 
 h3,
@@ -76,5 +83,31 @@ button {
   line-height: 15px;
   user-select: none;
   color: var(--color-text);
+}
+
+button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+}
+
+button img {
+  width: 70%;
+  height: 70%;
+}
+
+button:hover img {
+  width: 80%;
+  height: 80%;
+}
+
+.dark button img {
+  filter: invert(1);
+}
+
+.light button img {
+  filter: invert(0.5);
 }
 </style>

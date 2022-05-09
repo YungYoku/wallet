@@ -84,7 +84,6 @@ header button {
 .logo a:hover,
 .tools a:hover,
 .tools button:hover {
-  background-color: #ffffff;
-  color: #333333;
+  text-decoration: underline;
 }
 </style>

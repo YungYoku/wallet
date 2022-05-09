@@ -11,11 +11,10 @@
 <style scoped>
 .loadingWrap {
   position: absolute;
-  top: 84px;
+  top: 0;
   left: 0;
   width: 100%;
-  min-height: calc(100vh - 84px);
-  height: calc(100% - 84px);
+  height: 100%;
   z-index: 8;
   background-color: var(--color-background2);
   display: flex;
@@ -24,12 +23,12 @@
 }
 
 .loading {
-  animation: circleRotate 1s linear infinite;
+  animation: circleRotate 1.2s linear infinite;
 }
 
 .loadingCircle {
-  width: 40px;
-  height: 40px;
+  width: 50px;
+  height: 50px;
   background-color: transparent;
   border: 1px solid var(--color-loading);
   border-radius: 50%;
@@ -45,7 +44,7 @@
   top: -10px;
   left: -10px;
   background-color: var(--color-background2);
-  animation: bgRotate 1s linear infinite alternate;
+  animation: bgRotate 0.6s linear infinite alternate;
 }
 
 @keyframes circleRotate {
@@ -65,10 +64,10 @@
     left: -10px;
   }
   to {
-    width: 70px;
-    height: 70px;
-    top: -40px;
-    left: -40px;
+    width: 100px;
+    height: 100px;
+    top: -60px;
+    left: -60px;
   }
 }
 </style>
