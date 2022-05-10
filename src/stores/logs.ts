@@ -22,16 +22,17 @@ export const useLogsStore = defineStore({
 
   actions: {
     setUid(uid: string) {
-      const loadingStore = useBudgetsStore();
+      const budgetsStore = useBudgetsStore();
 
       this.uid = uid;
       localStorage.uid = uid;
-      loadingStore.subscribeInfo();
+      budgetsStore.subscribeInfo();
     },
 
     login({ email, pass }: { email: string; pass: string }) {
       const loading = useLoadingStore();
       loading.show();
+
       signInWithEmailAndPassword(getAuth(), email, pass).then(
         async (userCredential) => {
           const user = userCredential.user;
@@ -50,6 +51,7 @@ export const useLogsStore = defineStore({
     register({ email, pass }: { email: string; pass: string }) {
       const loading = useLoadingStore();
       loading.show();
+
       createUserWithEmailAndPassword(getAuth(), email, pass).then(
         async (userCredential) => {
           const user = userCredential.user;
@@ -68,6 +70,19 @@ export const useLogsStore = defineStore({
           loading.hide();
         }
       );
+    },
+
+    async logout() {
+      const loading = useLoadingStore();
+      const budgets = useBudgetsStore();
+
+      loading.show();
+      this.$reset();
+      budgets.unsubscribe();
+      budgets.$reset();
+      await localStorage.clear();
+      await router.push("/login");
+      loading.hide();
     },
   },
 });

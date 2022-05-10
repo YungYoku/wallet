@@ -1,15 +1,12 @@
 <script lang="ts" setup>
 import { computed } from "vue";
-import TheLoading from "@/components/TheLoading.vue";
 import StandardLayout from "@/layouts/StandardLayout.vue";
 import EmptyLayout from "@/layouts/EmptyLayout.vue";
 import { useRoute } from "vue-router";
 import { useBudgetsStore } from "@/stores/budgets";
-import { useLoadingStore } from "@/stores/loading";
 import type { Layout } from "@/interfaces/layout";
 
 const budgetsStore = useBudgetsStore();
-const loadingStore = useLoadingStore();
 
 const route = useRoute();
 
@@ -26,8 +23,7 @@ budgetsStore.subscribeInfo();
 </script>
 
 <template>
-  <the-loading v-if="loadingStore.loading" />
-  <component :is="layouts[layout]" v-else>
+  <component :is="layouts[layout]">
     <router-view />
   </component>
 </template>

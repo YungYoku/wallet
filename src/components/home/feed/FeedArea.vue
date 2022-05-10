@@ -2,7 +2,10 @@
 import FeedAreaPurchase from "./FeedAreaPurchase.vue";
 import { useBudgetsStore } from "@/stores/budgets";
 import FeedAreaTags from "@/components/home/feed/FeedAreaTags.vue";
+import BgLoading from "@/components/BgLoading.vue";
+import { useLoadingStore } from "@/stores/loading";
 
+const loadingStore = useLoadingStore();
 const budgetsStore = useBudgetsStore();
 </script>
 
@@ -11,7 +14,10 @@ const budgetsStore = useBudgetsStore();
     <feed-area-tags />
 
     <div class="feedAreaPurchases">
+      <bg-loading v-if="loadingStore.loading" />
+
       <feed-area-purchase
+        v-else
         v-for="purchase in budgetsStore.budget.purchases"
         :key="purchase.itemName + purchase.price"
         :category="purchase.category"
@@ -34,6 +40,7 @@ const budgetsStore = useBudgetsStore();
   display: grid;
   grid-template: 50px auto / 1fr;
   grid-gap: 10px;
+  overflow: hidden;
 }
 
 .feedAreaPurchases {

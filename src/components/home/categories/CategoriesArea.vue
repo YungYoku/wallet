@@ -4,7 +4,10 @@ import CategoriesAreaCreate from "./CategoriesAreaCreate.vue";
 import CategoriesAreaItem from "./CategoriesAreaItem.vue";
 import { useBudgetsStore } from "@/stores/budgets";
 import type { Category } from "@/interfaces/category";
+import BgLoading from "@/components/BgLoading.vue";
+import { useLoadingStore } from "@/stores/loading";
 
+const loadingStore = useLoadingStore();
 const budgetsStore = useBudgetsStore();
 
 function nullifyPrice(categories: Category[]) {
@@ -50,7 +53,10 @@ let categories = computed<Category[]>(() => {
     <categories-area-create />
 
     <div class="areaItems">
+      <bg-loading v-if="loadingStore.loading" />
+
       <categories-area-item
+        v-else
         v-for="category in categories"
         :key="category.name + category.price"
         :category="category.name"

@@ -3,7 +3,10 @@ import { computed, onMounted, ref, watch } from "vue";
 import { useBudgetsStore } from "@/stores/budgets";
 import BudgetName from "@/components/home/chart/BudgetName.vue";
 import type { ChartData } from "@/interfaces/chartData";
+import BgLoading from "@/components/BgLoading.vue";
+import { useLoadingStore } from "@/stores/loading";
 
+const loadingStore = useLoadingStore();
 const budgetsStore = useBudgetsStore();
 
 let diagram = ref();
@@ -132,7 +135,9 @@ async function drawRect() {
 </script>
 
 <template>
-  <aside>
+  <bg-loading v-if="loadingStore.loading" />
+
+  <aside v-else>
     <budget-name />
 
     <div v-if="budgetsStore.budget.balance" class="canvasWrap">

@@ -5,7 +5,10 @@ import { useBudgetsStore } from "@/stores/budgets";
 import { useLogsStore } from "@/stores/logs";
 import type { Message } from "@/interfaces/message";
 import type { MessageDate } from "@/interfaces/messageData";
+import BgLoading from "@/components/BgLoading.vue";
+import { useLoadingStore } from "@/stores/loading";
 
+const loadingStore = useLoadingStore();
 const budgetsStore = useBudgetsStore();
 const logsStore = useLogsStore();
 
@@ -26,7 +29,10 @@ let chat = computed<Message[]>(() => {
 
 <template>
   <div class="messagesWindowWrap">
+    <bg-loading v-if="loadingStore.loading" />
+
     <chat-area-message
+      v-else
       v-for="message in chat"
       :key="message.message + dateFilter(message.date)"
       :date="dateFilter(message.date)"

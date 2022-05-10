@@ -1,21 +1,10 @@
 <script lang="ts" setup>
-import { useRouter } from "vue-router";
-import { useBudgetsStore } from "@/stores/budgets";
 import { useLogsStore } from "@/stores/logs";
-import { useLoadingStore } from "@/stores/loading";
 
-const budgetsStore = useBudgetsStore();
 const logsStore = useLogsStore();
-const loadingStore = useLoadingStore();
-const router = useRouter();
 
 async function logOut() {
-  loadingStore.show();
-  localStorage.clear();
-  budgetsStore.$reset();
-  logsStore.$reset();
-  await router.push("/login");
-  loadingStore.hide();
+  await logsStore.logout();
 }
 </script>
 
