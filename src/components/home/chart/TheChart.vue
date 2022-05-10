@@ -1,17 +1,25 @@
 <script lang="ts" setup>
-import { computed, onMounted, ref, watch } from "vue";
+import { computed, ref } from "vue";
 import { useBudgetsStore } from "@/stores/budgets";
 import BudgetName from "@/components/home/chart/BudgetName.vue";
 import type { ChartData } from "@/interfaces/chartData";
 import BgLoading from "@/components/BgLoading.vue";
 import { useLoadingStore } from "@/stores/loading";
+import { PieChart } from "vue-chart-3";
+
+import { ArcElement, Chart, PieController } from "chart.js";
+
+Chart.register(PieController, ArcElement);
 
 const loadingStore = useLoadingStore();
 const budgetsStore = useBudgetsStore();
 
-let diagram = ref();
-let data = computed<ChartData[]>(() => {
-  let _data: ChartData[] = [];
+const options = ref({
+  responsive: true,
+});
+
+let data = computed<ChartData>(() => {
+  let _data = [];
   if (
     budgetsStore.budget.categories &&
     budgetsStore.budget.categories[0] &&
@@ -20,11 +28,11 @@ let data = computed<ChartData[]>(() => {
   ) {
     for (const obj of budgetsStore.budget.categories) {
       _data.push({
-        radian: 0,
         value: +obj.price,
         color: obj.color,
       });
     }
+
     let i = 0;
     for (const obj of budgetsStore.budget.purchases) {
       if (_data[i]) {
@@ -35,103 +43,24 @@ let data = computed<ChartData[]>(() => {
       i++;
     }
   }
-  return _data;
-});
 
-let vueCanvas: {
-  clearRect: (arg0: number, arg1: number, arg2: number, arg3: number) => any;
-  beginPath: () => any;
-  arc: (
-    arg0: number,
-    arg1: number,
-    arg2: number,
-    arg3: number,
-    arg4: number,
-    arg5: boolean | undefined
-  ) => any;
-  closePath: () => any;
-  stroke: () => any;
-  fillStyle: string;
-  fill: () => any;
-  moveTo: (arg0: number, arg1: number) => any;
-  save: () => any;
-  translate: (arg0: number, arg1: number) => any;
-  rotate: (arg0: any) => any;
-  restore: () => any;
-};
+  const values: number[] = [];
+  const backgroundColors: string[] = [];
+  _data = _data.filter((item) => item.value);
+  _data.forEach((item) => {
+    values.push(item.value);
+    backgroundColors.push(item.color);
+  });
 
-function startDrawing() {
-  if (data.value && diagram.value) {
-    diagram.value.width = diagram.value.offsetWidth;
-    diagram.value.height = diagram.value.offsetHeight;
-    vueCanvas = diagram.value.getContext("2d");
-    vueCanvas.clearRect(0, 0, 800, 800);
-    if (
-      budgetsStore.budget.categories[0] &&
-      budgetsStore.budget.purchases[0] &&
-      diagram.value
-    ) {
-      drawRect();
-    }
-  }
-}
-
-onMounted(() => startDrawing());
-watch(data, () => startDrawing());
-
-async function drawRect() {
-  vueCanvas.clearRect(0, 0, 800, 800);
-  let previousRadian = 0;
-  let middle = {
-    x: diagram.value.offsetWidth / 2,
-    y: diagram.value.offsetHeight / 2,
-    radius: diagram.value.offsetHeight / 2,
+  return {
+    datasets: [
+      {
+        data: values,
+        backgroundColor: backgroundColors,
+      },
+    ],
   };
-
-  await vueCanvas.beginPath();
-  await vueCanvas.arc(
-    middle.x,
-    middle.y,
-    middle.radius,
-    0,
-    2 * Math.PI,
-    undefined
-  );
-  await vueCanvas.closePath();
-  await vueCanvas.stroke();
-  vueCanvas.fillStyle = "#cccccc";
-  await vueCanvas.fill();
-
-  let total = ref(0);
-  for (const obj of data.value) {
-    total.value += obj.value;
-  }
-
-  for (const obj of data.value) {
-    previousRadian = previousRadian || 0;
-    await vueCanvas.beginPath();
-    vueCanvas.fillStyle = obj.color;
-    obj.radian = Math.PI * 2 * (obj.value / total.value);
-    await vueCanvas.moveTo(middle.x, middle.y);
-    await vueCanvas.arc(
-      middle.x,
-      middle.y,
-      middle.radius,
-      previousRadian,
-      previousRadian + obj.radian,
-      false
-    );
-    await vueCanvas.closePath();
-    await vueCanvas.fill();
-    await vueCanvas.save();
-    await vueCanvas.translate(middle.x, middle.y);
-    vueCanvas.fillStyle = "#cccccc";
-    await vueCanvas.rotate(previousRadian + obj.radian);
-    await vueCanvas.restore();
-
-    previousRadian += obj.radian;
-  }
-}
+});
 </script>
 
 <template>
@@ -141,7 +70,12 @@ async function drawRect() {
     <budget-name />
 
     <div v-if="budgetsStore.budget.balance" class="canvasWrap">
-      <canvas ref="diagram" class="diagram" height="300" width="300"></canvas>
+      <pie-chart
+        :options="options"
+        :chartData="data"
+        :width="300"
+        :height="300"
+      />
     </div>
 
     <div v-else class="emptyCircle"></div>
@@ -170,7 +104,7 @@ span {
 .emptyCircle {
   width: 300px;
   height: 300px;
-  border: 5px solid #9966cc;
+  border: 2px solid #ffffff;
   border-radius: 50%;
 }
 </style>

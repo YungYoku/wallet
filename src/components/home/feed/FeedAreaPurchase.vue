@@ -52,7 +52,7 @@ async function deletePurchase() {
     <h3>{{ itemName }}</h3>
     <h3>{{ category }}</h3>
     <h3>{{ price }} руб</h3>
-    <button @click="deletePurchase">
+    <button type="button" @click="deletePurchase">
       <img src="@/assets/img/close.svg" alt="Удалить" />
     </button>
   </div>

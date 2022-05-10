@@ -1,5 +1,8 @@
+interface Dataset {
+  data: number[];
+  backgroundColor: string[];
+}
+
 export interface ChartData {
-  radian: number;
-  value: number;
-  color: string;
+  datasets: Dataset[];
 }
