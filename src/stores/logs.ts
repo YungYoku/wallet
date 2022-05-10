@@ -1,11 +1,12 @@
 import { defineStore } from "pinia";
+import type { Unsubscribe } from "firebase/auth";
 import {
   createUserWithEmailAndPassword,
   getAuth,
   signInWithEmailAndPassword,
 } from "firebase/auth";
 import { useLoadingStore } from "@/stores/loading";
-import { doc, setDoc } from "firebase/firestore";
+import { doc, onSnapshot, setDoc } from "firebase/firestore";
 import { db } from "@/main";
 import router from "@/router";
 import { useBudgetsStore } from "@/stores/budgets";
@@ -16,6 +17,7 @@ export const useLogsStore = defineStore({
   state: () => ({
     uid: localStorage.uid ? localStorage.uid : "",
     name: "",
+    userUnsubscribe: Function as Unsubscribe,
   }),
 
   getters: {},
@@ -29,6 +31,20 @@ export const useLogsStore = defineStore({
       budgetsStore.subscribeInfo();
     },
 
+    async subscribeUserInfo() {
+      const budgets = useBudgetsStore();
+
+      this.userUnsubscribe = await onSnapshot(
+        doc(db, "users", this.uid),
+        (data) => {
+          if (data.exists()) {
+            this.name = data.data().name;
+            budgets.setBudgets(data.data().budgets);
+          }
+        }
+      );
+    },
+
     login({ email, pass }: { email: string; pass: string }) {
       const loading = useLoadingStore();
       loading.show();
@@ -36,7 +52,6 @@ export const useLogsStore = defineStore({
       signInWithEmailAndPassword(getAuth(), email, pass).then(
         async (userCredential) => {
           const user = userCredential.user;
-          this.name = email;
           this.setUid(user.uid);
           await router.push("/");
           loading.hide();
@@ -60,7 +75,6 @@ export const useLogsStore = defineStore({
             name,
             budgets: [],
           });
-          this.name = email;
           this.setUid(user.uid);
           await router.push("/");
           loading.hide();
@@ -77,6 +91,7 @@ export const useLogsStore = defineStore({
       const budgets = useBudgetsStore();
 
       loading.show();
+      this.userUnsubscribe();
       this.$reset();
       budgets.unsubscribe();
       budgets.$reset();

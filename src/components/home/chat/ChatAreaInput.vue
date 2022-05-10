@@ -34,7 +34,7 @@ function sendMessage() {
 </script>
 
 <template>
-  <form @submit.prevent="sendMessage()">
+  <form @submit.prevent="sendMessage">
     <input v-model.trim="message" placeholder="Сообщение" type="text" />
     <button type="submit">
       <img alt="Send" src="@/assets/img/send.svg" />

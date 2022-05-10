@@ -46,26 +46,12 @@ export const useBudgetsStore = defineStore({
         const loadingStore = useLoadingStore();
 
         loadingStore.show();
-        await this.subscribeUserInfo().then(() => {
+        await logs.subscribeUserInfo().then(() => {
           this.subscribeBudgetInfo().then(() => {
             loadingStore.hide();
           });
         });
       }
-    },
-
-    async subscribeUserInfo() {
-      const logs = useLogsStore();
-
-      this.userUnsubscribe = await onSnapshot(
-        doc(db, "users", logs.uid),
-        (data) => {
-          if (data.exists()) {
-            this.setBudgets(data.data().budgets);
-            this.bid = data.data().budgets[0];
-          }
-        }
-      );
     },
 
     async subscribeBudgetInfo() {
@@ -92,10 +78,10 @@ export const useBudgetsStore = defineStore({
 
     setBudgets(budgets: string[]) {
       this.budgets = budgets;
+      this.setBid(budgets[0]);
     },
 
     unsubscribe() {
-      this.userUnsubscribe();
       this.budgetUnsubscribe();
     },
   },
