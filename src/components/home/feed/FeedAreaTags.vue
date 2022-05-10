@@ -25,5 +25,6 @@ div {
 h3 {
   color: var(--color-text);
   font-size: 16px;
+  font-weight: 600;
 }
 </style>

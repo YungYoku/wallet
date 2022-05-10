@@ -57,11 +57,30 @@ function create() {
 <template>
   <div>
     <form @submit.prevent="create">
-      <input v-model.trim="itemName" placeholder="Товар" type="text" />
+      <label for="item">
+        Товар:
+        <input
+          id="item"
+          v-model.trim="itemName"
+          placeholder="Название"
+          type="text"
+        />
+      </label>
 
-      <input v-model.trim="userName" placeholder="Имя" type="text" />
+      <label for="name">
+        Имя:
+        <input
+          id="name"
+          v-model.trim="userName"
+          placeholder="Имя"
+          type="text"
+        />
+      </label>
 
-      <input v-model.number="price" placeholder="Цена" type="text" />
+      <label for="price">
+        Цена:
+        <input id="price" v-model.number="price" placeholder="0" type="text" />
+      </label>
 
       <select v-model="category" name="category" title="category">
         <option
@@ -97,23 +116,51 @@ form {
   background-color: var(--color-background-soft);
   border-radius: 10px;
   box-shadow: 0 0 10px 1px var(--color-shadow);
+  padding: 10px 0 0 0;
+}
+
+label {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 5px 18px;
+  height: 40px;
+  font-size: 14px;
+  gap: 5px;
+}
+
+input {
+  border-radius: 5px;
 }
 
 input,
 select,
 button {
+  width: 100%;
   height: 40px;
   padding: 5px 10px;
-}
-
-input:first-child {
-  border-radius: 10px 10px 0 0;
+  font-size: 14px;
 }
 
 input,
 select {
   background-color: var(--color-background-soft);
   color: var(--color-text);
+}
+
+select {
+  width: calc(100% - 10px);
+  margin: 0 5px;
+  border-radius: 5px;
+}
+
+select:hover,
+input:hover {
+  background-color: var(--color-background-mute);
+}
+
+input:focus {
+  background-color: var(--color-background-mute);
 }
 
 button {
