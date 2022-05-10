@@ -34,6 +34,8 @@ async function joinBudget() {
 
 <template>
   <div class="joinBudget">
+    <h2>Присоединиться к бюджету</h2>
+
     <form @submit.prevent="joinBudget">
       <input
         v-model.trim="budget.name"
@@ -61,6 +63,15 @@ async function joinBudget() {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
+  gap: 40px;
+}
+
+h2 {
+  font-size: 32px;
+  font-weight: 500;
+  color: var(--color-text);
+  text-align: center;
 }
 
 form {

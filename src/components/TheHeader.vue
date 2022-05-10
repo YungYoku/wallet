@@ -26,9 +26,15 @@ async function logOut() {
     </div>
 
     <div class="tools">
-      <router-link to="/join">Присоединиться</router-link>
-      <router-link to="/create">Создать</router-link>
-      <button type="button" @click="logOut">
+      <router-link class="toolsItem" to="/join">
+        <img src="@/assets/img/enter.svg" alt="Присоединиться" />
+      </router-link>
+
+      <router-link class="toolsItem" to="/create">
+        <img src="@/assets/img/plus.svg" alt="Создать" />
+      </router-link>
+
+      <button class="toolsItem" type="button" @click="logOut">
         <img src="@/assets/img/exit.svg" alt="Выйти" />
       </button>
     </div>
@@ -51,9 +57,8 @@ header {
 
 header a,
 header button {
-  padding: 10px;
+  padding: 5px;
   color: var(--color-text);
-  border-radius: 20px;
   line-height: 1;
 }
 
@@ -74,11 +79,10 @@ header button {
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  gap: 10px;
+  gap: 5px;
 }
 
-.tools a,
-.tools button {
+.toolsItem {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -86,32 +90,31 @@ header button {
 }
 
 .logo a:hover,
-.tools a:hover,
-.tools button:hover {
+.toolsItem:hover {
   text-decoration: underline;
 }
 
-.tools button {
+.toolsItem {
   width: 48px;
   height: 48px;
 }
 
-.tools button img {
-  width: 80%;
-  height: 80%;
+.toolsItem img {
+  width: 60%;
+  height: 60%;
   transition: all 0.1s;
 }
 
-.tools button:hover img {
+.toolsItem:hover img {
   transition: all 0.1s;
   transform: scale(1.1);
 }
 
-.dark .tools button img {
+.dark .tools .toolsItem img {
   filter: invert(1);
 }
 
-.light .tools button img {
+.light .tools .toolsItem img {
   filter: invert(0.5);
 }
 </style>

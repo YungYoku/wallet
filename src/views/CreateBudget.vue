@@ -41,7 +41,9 @@ async function createBudget() {
 
 <template>
   <div class="createBudget">
-    <form @submit.prevent="createBudget()">
+    <h2>Создать бюджет</h2>
+
+    <form @submit.prevent="createBudget">
       <input
         v-model.trim="budget.name"
         class="name"
@@ -65,6 +67,15 @@ async function createBudget() {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
+  gap: 40px;
+}
+
+h2 {
+  font-size: 32px;
+  font-weight: 500;
+  color: var(--color-text);
+  text-align: center;
 }
 
 form {
