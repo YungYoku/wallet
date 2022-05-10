@@ -37,7 +37,7 @@ function sendMessage() {
   <form @submit.prevent="sendMessage()">
     <input v-model.trim="message" placeholder="Сообщение" type="text" />
     <button type="submit">
-      <img alt="Send" src="@/assets/img/send.png" />
+      <img alt="Send" src="@/assets/img/send.svg" />
     </button>
   </form>
 </template>
@@ -73,15 +73,22 @@ button {
   justify-content: center;
 }
 
-button:hover > img {
-  transition: all 0.1s;
-  width: 32px;
-  height: 32px;
-}
-
 button > img {
   transition: all 0.1s;
-  width: 28px;
-  height: 28px;
+  width: 24px;
+  height: 24px;
+}
+
+button:hover > img {
+  transition: all 0.1s;
+  transform: scale(1.1);
+}
+
+.dark button img {
+  filter: invert(1);
+}
+
+.light button img {
+  filter: invert(0.5);
 }
 </style>

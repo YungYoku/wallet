@@ -28,7 +28,9 @@ async function logOut() {
     <div class="tools">
       <router-link to="/join">Присоединиться</router-link>
       <router-link to="/create">Создать</router-link>
-      <button type="button" @click="logOut">Выйти</button>
+      <button type="button" @click="logOut">
+        <img src="@/assets/img/exit.svg" alt="Выйти" />
+      </button>
     </div>
   </header>
 </template>
@@ -72,17 +74,44 @@ header button {
   display: flex;
   align-items: center;
   justify-content: flex-end;
+  gap: 10px;
 }
 
 .tools a,
 .tools button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-size: 16px;
-  margin: 0 5px;
 }
 
 .logo a:hover,
 .tools a:hover,
 .tools button:hover {
   text-decoration: underline;
+}
+
+.tools button {
+  width: 48px;
+  height: 48px;
+}
+
+.tools button img {
+  width: 80%;
+  height: 80%;
+  transition: all 0.1s;
+}
+
+.tools button:hover img {
+  transition: all 0.1s;
+  transform: scale(1.1);
+}
+
+.dark .tools button img {
+  filter: invert(1);
+}
+
+.light .tools button img {
+  filter: invert(0.5);
 }
 </style>

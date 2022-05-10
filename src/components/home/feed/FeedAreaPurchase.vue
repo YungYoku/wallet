@@ -53,7 +53,7 @@ async function deletePurchase() {
     <h3>{{ category }}</h3>
     <h3>{{ price }} руб</h3>
     <button @click="deletePurchase">
-      <img src="@/assets/img/close.png" alt="Удалить" />
+      <img src="@/assets/img/close.svg" alt="Удалить" />
     </button>
   </div>
 </template>
@@ -95,11 +95,12 @@ button {
 button img {
   width: 70%;
   height: 70%;
+  transition: all 0.1s;
 }
 
 button:hover img {
-  width: 80%;
-  height: 80%;
+  transition: all 0.1s;
+  transform: scale(1.1);
 }
 
 .dark button img {
