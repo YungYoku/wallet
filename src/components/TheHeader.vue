@@ -28,7 +28,7 @@ async function logOut() {
     <div class="tools">
       <router-link to="/join">Присоединиться</router-link>
       <router-link to="/create">Создать</router-link>
-      <button @click="logOut">Выйти</button>
+      <button type="button" @click="logOut">Выйти</button>
     </div>
   </header>
 </template>
@@ -45,7 +45,6 @@ header {
   grid-gap: 20px;
   z-index: 10;
   box-shadow: 0 0 10px 1px var(--color-shadow);
-  user-select: none;
 }
 
 header a,

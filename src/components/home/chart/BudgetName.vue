@@ -1,17 +1,10 @@
 <script lang="ts" setup>
-import { useRouter } from "vue-router";
 import { useBudgetsStore } from "@/stores/budgets";
-import { useLoadingStore } from "@/stores/loading";
 
 const budgetsStore = useBudgetsStore();
-const loading = useLoadingStore();
-const router = useRouter();
 
-async function swapBudget(bid: string) {
-  loading.show();
+function swapBudget(bid: string) {
   budgetsStore.setBid(bid);
-  await router.push("/");
-  loading.hide();
 }
 </script>
 
@@ -32,6 +25,7 @@ async function swapBudget(bid: string) {
 
       <div v-if="budgetsStore.budgets[1]" class="budget-content">
         <button
+          type="button"
           v-for="budget in budgetsStore.budgets"
           :key="budget"
           @click="swapBudget(budget)"
@@ -68,7 +62,6 @@ async function swapBudget(bid: string) {
   display: flex;
   align-items: center;
   justify-content: center;
-  user-select: none;
   z-index: 10;
   border-radius: 10px;
   gap: 10px;

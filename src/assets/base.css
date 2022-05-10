@@ -84,14 +84,35 @@
     outline: none;
     border: none;
     font-family: "Montserrat Alternates", sans-serif;
-    -webkit-tap-highlight-color: transparent;
-    scrollbar-width: thin;
-    scrollbar-color: #9966cc #b39ad1;
+}
+
+@supports (-webkit-tap-highlight-color: transparent) {
+    *,
+    *::before,
+    *::after {
+        -webkit-tap-highlight-color: transparent;
+    }
+}
+
+@supports (scrollbar-width: thin) {
+    *,
+    *::before,
+    *::after {
+        scrollbar-width: thin;
+    }
+}
+
+@supports (scrollbar-color: #9966cc #b39ad1) {
+    *,
+    *::before,
+    *::after {
+        scrollbar-color: #9966cc #b39ad1;
+    }
 }
 
 *::-webkit-scrollbar {
-    height: 8px;
-    width: 8px;
+    height: 2px;
+    width: 2px;
 }
 
 *::-webkit-scrollbar-track {
@@ -108,7 +129,7 @@ body {
     color: var(--color-text);
     background: var(--color-background);
     transition: color 0.5s, background-color 0.5s;
-    line-height: 1.6;
+    line-height: 1.5;
     font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
@@ -146,4 +167,16 @@ p, h1, h2, h3, h4, h5, h6 {
 
 ::selection {
     background-color: #999999;
+}
+
+@supports (user-select: none) {
+    *,
+    *::before,
+    *::after {
+        user-select: none;
+    }
+
+    input {
+        user-select: text;
+    }
 }

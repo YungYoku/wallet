@@ -58,9 +58,12 @@ function create() {
   <div>
     <form @submit.prevent="create">
       <input v-model.trim="itemName" placeholder="Товар" type="text" />
+
       <input v-model.trim="userName" placeholder="Имя" type="text" />
+
       <input v-model.number="price" placeholder="Цена" type="text" />
-      <select v-model="category">
+
+      <select v-model="category" name="category" title="category">
         <option
           :value="{
             color: '',
@@ -72,6 +75,7 @@ function create() {
         >
           Категория
         </option>
+
         <option
           v-for="item in budgetsStore.budget.categories"
           :key="item.name"

@@ -55,8 +55,7 @@ defineProps({
 }
 
 .category h3 {
-  user-select: none;
-  line-height: 15px;
+  font-size: 16px;
 }
 
 .category div div {

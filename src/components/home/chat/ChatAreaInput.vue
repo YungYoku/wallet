@@ -62,8 +62,7 @@ input {
   background: transparent;
   color: var(--color-text);
   padding: 20px;
-  font-size: 20px;
-  user-select: text;
+  font-size: 16px;
 }
 
 button {

@@ -24,6 +24,6 @@ div {
 
 h3 {
   color: var(--color-text);
-  user-select: none;
+  font-size: 16px;
 }
 </style>

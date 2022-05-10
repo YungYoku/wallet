@@ -54,21 +54,4 @@ let chat = computed<Message[]>(() => {
   flex-direction: column-reverse;
   background-color: var(--color-background-soft);
 }
-
-.messagesWindowWrap::-webkit-scrollbar {
-  width: 0;
-}
-
-.messagesWindowWrap::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-.messagesWindowWrap::-webkit-scrollbar-thumb {
-  background-color: transparent;
-}
-
-.messagesWindowWrap {
-  scrollbar-width: none;
-  scrollbar-color: transparent;
-}
 </style>

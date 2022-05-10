@@ -80,8 +80,7 @@ async function deletePurchase() {
 
 h3,
 button {
-  line-height: 15px;
-  user-select: none;
+  font-size: 16px;
   color: var(--color-text);
 }
 

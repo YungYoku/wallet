@@ -134,10 +134,13 @@ async function drawRect() {
 <template>
   <aside>
     <budget-name />
+
     <div v-if="budgetsStore.budget.balance" class="canvasWrap">
       <canvas ref="diagram" class="diagram" height="300" width="300"></canvas>
     </div>
+
     <div v-else class="emptyCircle"></div>
+
     <span>Сумма: {{ budgetsStore.budget.balance }}</span>
   </aside>
 </template>
@@ -151,7 +154,6 @@ aside {
 
 span {
   text-align: center;
-  user-select: none;
 }
 
 .canvasWrap {

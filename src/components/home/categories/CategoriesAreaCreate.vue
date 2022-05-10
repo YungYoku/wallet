@@ -37,7 +37,12 @@ function create() {
 <template>
   <form class="newCategory" @submit.prevent="create">
     <div>
-      <input v-model.trim="color" class="color" type="color" />
+      <input
+        v-model.trim="color"
+        class="color"
+        type="color"
+        placeholder="Цвет"
+      />
 
       <input
         v-model.trim="name"
@@ -100,7 +105,7 @@ button {
 
 .name,
 button {
-  font-size: 20px;
+  font-size: 16px;
 }
 
 button {

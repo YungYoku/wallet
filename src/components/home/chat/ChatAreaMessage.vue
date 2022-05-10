@@ -25,7 +25,7 @@ defineProps({
     }"
     class="messageWrap"
   >
-    <div class="messageWrapWrap">
+    <div class="message">
       <div class="nameAndDate">
         <h3 v-if="name !== myName">{{ name !== myName ? name : "" }}</h3>
         <h4>{{ date }}</h4>
@@ -42,7 +42,6 @@ defineProps({
   align-items: center;
   position: relative;
   margin-top: 10px;
-  user-select: none;
 }
 
 .messageLeft {
@@ -53,7 +52,7 @@ defineProps({
   justify-content: flex-end;
 }
 
-.messageWrapWrap {
+.message {
   display: inline;
   border-radius: 10px;
   padding: 10px;
@@ -61,10 +60,9 @@ defineProps({
   min-width: 52px;
   background-color: var(--color-background2);
   color: var(--color-text);
-  user-select: text;
 }
 
-.messageWrapWrap:hover {
+.message:hover {
   background-color: var(--color-background-mute);
 }
 
@@ -74,21 +72,21 @@ defineProps({
   justify-content: flex-start;
 }
 
-.messageWrapWrap h3 {
+.message h3 {
   position: relative;
   top: 0;
-  font-size: 15px;
-  font-weight: 400;
+  font-size: 14px;
+  font-weight: 600;
   margin-right: 10px;
 }
 
-.messageWrapWrap:not(h3) {
-  font-size: 20px;
-  font-weight: 600;
+.message h4 {
+  font-size: 14px;
+  font-weight: 400;
 }
 
-.messageWrapWrap h4 {
-  font-size: 15px;
+.message h5 {
+  font-size: 16px;
   font-weight: 400;
 }
 </style>
