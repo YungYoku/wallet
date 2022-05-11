@@ -152,6 +152,7 @@ select {
   width: calc(100% - 10px);
   margin: 0 5px;
   border-radius: 5px;
+  cursor: pointer;
 }
 
 select:hover,
