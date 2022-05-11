@@ -33,6 +33,7 @@ export const useBudgetsStore = defineStore({
       const loadingStore = useLoadingStore();
 
       this.bid = bid;
+      localStorage.bid = bid;
       loadingStore.show();
       await this.budgetUnsubscribe();
       await this.subscribeBudgetInfo().then(() => {

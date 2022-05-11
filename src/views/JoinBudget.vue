@@ -25,8 +25,7 @@ async function joinBudget() {
     await updateDoc(doc(db, "users", logsStore.uid), {
       budgets: arrayUnion(budget.id),
     });
-    budgetsStore.setBid(budget.id);
-    localStorage.bid = budget.id;
+    await budgetsStore.setBid(budget.id);
     await router.push("/");
   }
 }

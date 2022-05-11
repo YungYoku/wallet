@@ -22,6 +22,7 @@ let budget = reactive({
 async function createBudget() {
   if (budget.isValid()) {
     budget.id = budget.name + "-" + budget.pass;
+
     await setDoc(doc(db, "budgets", budget.id), {
       balance: 0,
       categories: [],
@@ -29,11 +30,12 @@ async function createBudget() {
       name: budget.name,
       purchases: [],
     });
+
     await updateDoc(doc(db, "users", logsStore.uid), {
       budgets: arrayUnion(budget.id),
     });
-    budgetsStore.setBid(budget.name);
-    localStorage.bid = budget.id;
+
+    await budgetsStore.setBid(budget.id);
     await router.push("/");
   }
 }
