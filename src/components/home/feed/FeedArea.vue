@@ -17,8 +17,8 @@ const budgetsStore = useBudgetsStore();
       <bg-loading v-if="loadingStore.loading" />
 
       <feed-area-purchase
-        v-else
         v-for="purchase in budgetsStore.budget.purchases"
+        v-else
         :key="purchase.itemName + purchase.price"
         :category="purchase.category"
         :color="purchase.color"
@@ -32,24 +32,29 @@ const budgetsStore = useBudgetsStore();
 
 <style scoped>
 .feedArea {
+  display: grid;
+
+  grid-gap: 10px;
+  grid-template: 50px auto / 1fr;
+
   width: 100%;
   height: 100%;
-  border-radius: 10px;
-  background-color: var(--color-background-soft);
-  box-shadow: 0 0 10px 1px var(--color-shadow);
-  display: grid;
-  grid-template: 50px auto / 1fr;
-  grid-gap: 10px;
   overflow: hidden;
+
+  background-color: var(--color-background-soft);
+  border-radius: 10px;
+  box-shadow: 0 0 10px 1px var(--color-shadow);
 }
 
 .feedAreaPurchases {
-  overflow-y: auto;
-  overflow-x: hidden;
   position: relative;
   top: 0;
   left: 0;
+
   display: flex;
   flex-direction: column;
+
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 </style>

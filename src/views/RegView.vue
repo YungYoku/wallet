@@ -131,64 +131,77 @@ async function register() {
 
 <style scoped>
 .registration {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
   width: 100%;
   height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
 }
 
 form {
-  min-width: 340px;
-  width: 40%;
-  max-width: 520px;
+  display: grid;
   justify-content: center;
   align-items: center;
-  padding: 30px 40px 20px 40px;
-  border-radius: 30px;
-  background-color: var(--color-background2);
-  color: var(--color-text);
-  box-shadow: 0 0 10px 1px var(--color-shadow);
-  display: grid;
+
   grid-template: 50px 50px 50px 40px 20px 90px 10px / 1fr;
+
+  width: 40%;
+  min-width: 340px;
+  max-width: 520px;
+  padding: 30px 40px 20px 40px;
+
+  color: var(--color-text);
+
+  background-color: var(--color-background2);
+  border-radius: 30px;
+  box-shadow: 0 0 10px 1px var(--color-shadow);
 }
 
 h2 {
+  margin: 0 0 60px 0;
+
   font-size: 70px;
   font-weight: 500;
-  color: var(--color-text);
   text-align: center;
-  margin: 0 0 60px 0;
+  color: var(--color-text);
 }
 
 .email,
 .pass,
 .passRep {
   font-size: 18px;
-  transition: all 0.02s;
-  user-select: text;
   color: var(--color-text);
+
   background: transparent;
+
+  transition: all 0.02s;
+
+  user-select: text;
 }
 
 .email:focus,
 .pass:focus,
 .passRep:focus {
   border-bottom: 2px solid #9966cc;
+
   transition: all 0.02s;
 }
 
 .passComplexity {
   display: grid;
-  grid-template: 5px / 1fr 1fr 1fr;
+
   grid-gap: 5%;
+  grid-template: 5px / 1fr 1fr 1fr;
 }
 
 .passComplexity__line {
   width: 100%;
   height: 5px;
+
   background-color: #d3d3d3;
+
   transition: all 0.5s;
 }
 
@@ -198,27 +211,31 @@ h2 {
 
 .submitBtn {
   padding: 10px 0;
+
+  font-size: 24px;
+  font-weight: 400;
+  color: white;
+
   background-color: #9966cc;
   border: none;
   border-radius: 20px;
-  color: white;
-  font-size: 24px;
-  font-weight: 400;
-  transition: all 0.3s;
   outline: none;
+
+  transition: all 0.3s;
 }
 
 .submitBtn:hover {
+  box-shadow: 0 4px 10px 1px var(--color-shadow);
+
   transform: scale(1.05);
   transition: all 0.3s;
-  box-shadow: 0 4px 10px 1px var(--color-shadow);
 }
 
 .inputLine {
-  border-left: none;
-  border-right: none;
   border-top: none;
+  border-right: none;
   border-bottom: 1px solid var(--color-border);
+  border-left: none;
 }
 
 .swapMode {
@@ -227,25 +244,31 @@ h2 {
 }
 
 h5 {
+  position: relative;
+
   font-weight: 600;
   color: gray;
-  position: relative;
+
   cursor: pointer;
 }
 
 h5::after {
   content: "";
   position: absolute;
-  background-color: #9966cc;
-  left: 0;
   bottom: -2px;
+  left: 0;
+
   width: 0;
   height: 2px;
+
+  background-color: #9966cc;
+
   transition: all 0.2s;
 }
 
 h5:hover::after {
   width: 100%;
+
   transition: all 0.2s;
 }
 
@@ -257,16 +280,16 @@ h5:hover::after {
 
 @media screen and (max-width: 480px) {
   form {
-    min-width: 300px;
     width: 80%;
+    min-width: 300px;
     max-width: 520px;
     padding: 20px 20px 20px 20px;
   }
 
   section {
     width: 30%;
-    padding: 30px 40px 20px 40px;
     min-width: 300px;
+    padding: 30px 40px 20px 40px;
   }
 
   h2 {

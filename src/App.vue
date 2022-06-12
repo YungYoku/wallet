@@ -31,6 +31,7 @@ budgetsStore.subscribeInfo();
 <style>
 #app {
   height: 100vh;
+
   background: var(--color-body);
   isolation: isolate;
 }

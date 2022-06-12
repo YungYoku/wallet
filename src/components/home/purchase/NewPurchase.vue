@@ -111,20 +111,25 @@ function create() {
 <style scoped>
 form {
   display: grid;
-  grid-template: repeat(4, 40px) / 1fr;
+
   grid-gap: 5px;
+  grid-template: repeat(4, 40px) / 1fr;
+
+  padding: 10px 0 0 0;
+
   background-color: var(--color-background-soft);
   border-radius: 10px;
   box-shadow: 0 0 10px 1px var(--color-shadow);
-  padding: 10px 0 0 0;
 }
 
 label {
   display: flex;
-  align-items: center;
   justify-content: flex-start;
-  padding: 5px 18px;
+  align-items: center;
+
   height: 40px;
+  padding: 5px 18px;
+
   font-size: 14px;
   gap: 5px;
 }
@@ -139,19 +144,23 @@ button {
   width: 100%;
   height: 40px;
   padding: 5px 10px;
+
   font-size: 14px;
 }
 
 input,
 select {
-  background-color: var(--color-background-soft);
   color: var(--color-text);
+
+  background-color: var(--color-background-soft);
 }
 
 select {
   width: calc(100% - 10px);
   margin: 0 5px;
+
   border-radius: 5px;
+
   cursor: pointer;
 }
 
@@ -165,8 +174,9 @@ input:focus {
 }
 
 button {
-  background-color: var(--color-background2);
   color: var(--color-text);
+
+  background-color: var(--color-background2);
   border-radius: 0 0 10px 10px;
 }
 

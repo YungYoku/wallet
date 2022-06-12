@@ -33,15 +33,18 @@ defineProps({
 
 <style scoped>
 .category {
-  height: auto;
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  padding: 10px;
-  border-radius: 10px;
+  align-items: center;
+
+  height: auto;
   margin-bottom: 10px;
-  background-color: var(--color-background2);
+  padding: 10px;
+
   color: var(--color-text);
+
+  background-color: var(--color-background2);
+  border-radius: 10px;
 }
 
 .category:hover {
@@ -50,8 +53,8 @@ defineProps({
 
 .category div {
   display: flex;
-  align-items: center;
   justify-content: flex-start;
+  align-items: center;
 }
 
 .category h3 {
@@ -59,9 +62,10 @@ defineProps({
 }
 
 .category div div {
-  border-radius: 15px;
   width: 30px;
   height: 30px;
   margin-right: 10px;
+
+  border-radius: 15px;
 }
 </style>

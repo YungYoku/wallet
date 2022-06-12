@@ -5,19 +5,23 @@ import ChatAreaInput from "./ChatAreaInput.vue";
 
 <template>
   <div class="wrap">
-    <chat-area></chat-area>
-    <chat-area-input></chat-area-input>
+    <chat-area />
+    <chat-area-input />
   </div>
 </template>
 
 <style scoped>
 .wrap {
+  position: relative;
+
+  display: grid;
+
+  grid-template: calc(100% - 60px) 60px / 1fr;
+
   width: 100%;
   height: 100%;
-  display: grid;
   overflow: hidden;
-  position: relative;
-  grid-template: calc(100% - 60px) 60px / 1fr;
+
   border-radius: 10px;
   box-shadow: 0 0 10px 1px var(--color-shadow);
 }

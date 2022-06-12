@@ -71,10 +71,10 @@ let data = computed<ChartData>(() => {
 
     <div v-if="budgetsStore.budget.balance" class="canvasWrap">
       <pie-chart
-        :options="options"
         :chartData="data"
-        :width="300"
         :height="300"
+        :options="options"
+        :width="300"
       />
     </div>
 
@@ -87,8 +87,9 @@ let data = computed<ChartData>(() => {
 <style scoped>
 aside {
   display: grid;
-  grid-template: 40px 300px auto / 1fr;
+
   grid-gap: 20px;
+  grid-template: 40px 300px auto / 1fr;
 }
 
 span {
@@ -97,13 +98,14 @@ span {
 
 .canvasWrap {
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
 }
 
 .emptyCircle {
   width: 300px;
   height: 300px;
+
   border: 2px solid #ffffff;
   border-radius: 50%;
 }

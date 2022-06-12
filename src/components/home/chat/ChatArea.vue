@@ -32,8 +32,8 @@ let chat = computed<Message[]>(() => {
     <bg-loading v-if="loadingStore.loading" />
 
     <chat-area-message
-      v-else
       v-for="message in chat"
+      v-else
       :key="message.message + dateFilter(message.date)"
       :date="dateFilter(message.date)"
       :myName="logsStore.name"
@@ -48,16 +48,19 @@ let chat = computed<Message[]>(() => {
 
 <style>
 .messagesWindowWrap {
-  width: 100%;
-  height: 100%;
-  padding: 10px 20px;
   position: relative;
   top: 0;
   left: 0;
+
   display: flex;
-  overflow-y: auto;
-  overflow-x: hidden;
   flex-direction: column-reverse;
+
+  width: 100%;
+  height: 100%;
+  padding: 10px 20px;
+  overflow-x: hidden;
+  overflow-y: auto;
+
   background-color: var(--color-background-soft);
 }
 </style>

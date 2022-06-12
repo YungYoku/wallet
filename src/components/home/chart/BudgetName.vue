@@ -25,9 +25,9 @@ function swapBudget(bid: string) {
 
       <div v-if="budgetsStore.budgets[1]" class="budget-content">
         <button
-          type="button"
           v-for="budget in budgetsStore.budgets"
           :key="budget"
+          type="button"
           @click="swapBudget(budget)"
         >
           {{ budget }}
@@ -39,43 +39,52 @@ function swapBudget(bid: string) {
 
 <style scoped>
 .budgetWrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
   width: 100%;
   height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
 }
 
 .budget-div {
-  width: 100%;
-  height: 100%;
+  position: relative;
+
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  position: relative;
+  align-items: center;
+
+  width: 100%;
+  height: 100%;
 }
 
 .budget-nav {
+  z-index: 10;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   width: 300px;
   height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 10;
+
   border-radius: 10px;
   gap: 10px;
 }
 
 .budget-content {
-  width: 300px;
-  display: none;
   position: absolute;
-  left: 0;
   top: 40px;
-  border-radius: 0 0 10px 10px;
-  overflow: hidden;
+  left: 0;
   z-index: 9;
+
+  display: none;
+
+  width: 300px;
+  overflow: hidden;
+
+  border-radius: 0 0 10px 10px;
 }
 
 .budget-div:hover .budget-content {
@@ -83,8 +92,9 @@ function swapBudget(bid: string) {
 }
 
 .budget-div:hover .budget-nav {
-  background-color: #ffffff;
   color: #333333;
+
+  background-color: #ffffff;
 }
 
 .budget-nav span {
@@ -101,15 +111,19 @@ function swapBudget(bid: string) {
 }
 
 .budget-content button {
-  width: 100%;
   display: block;
+
+  width: 100%;
   padding: 10px;
-  background-color: #333333;
+
   color: #ffffff;
+
+  background-color: #333333;
 }
 
 .budget-div:hover .budget-content button:hover {
-  background-color: #ffffff;
   color: #333333;
+
+  background-color: #ffffff;
 }
 </style>

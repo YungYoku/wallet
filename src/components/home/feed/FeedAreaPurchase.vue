@@ -53,25 +53,29 @@ async function deletePurchase() {
     <h3>{{ category }}</h3>
     <h3>{{ price }} руб</h3>
     <button type="button" @click="deletePurchase">
-      <img src="@/assets/img/close.svg" alt="Удалить" />
+      <img alt="Удалить" src="@/assets/img/close.svg" />
     </button>
   </div>
 </template>
 
 <style scoped>
 .feedPurchase {
-  height: 50px;
-  display: grid;
-  grid-template: 30px / 2fr 2fr 2fr 2fr 32px;
-  align-items: center;
-  justify-items: center;
-  grid-gap: 10px;
-  padding: 10px 20px 10px 10px;
-  border-radius: 10px;
-  margin-bottom: 10px;
-  background-color: var(--color-background2);
   position: relative;
+
+  display: grid;
+  align-items: center;
+
+  grid-gap: 10px;
+  grid-template: 30px / 2fr 2fr 2fr 2fr 32px;
+
+  height: 50px;
+  margin-bottom: 10px;
+  padding: 10px 20px 10px 10px;
+
+  background-color: var(--color-background2);
   border-left: 4px solid v-bind("props.color");
+  border-radius: 10px;
+  justify-items: center;
 }
 
 .feedPurchase:hover {
@@ -86,8 +90,9 @@ button {
 
 button {
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
+
   width: 32px;
   height: 32px;
 }
@@ -95,12 +100,13 @@ button {
 button img {
   width: 70%;
   height: 70%;
+
   transition: all 0.1s;
 }
 
 button:hover img {
-  transition: all 0.1s;
   transform: scale(1.1);
+  transition: all 0.1s;
 }
 
 .dark button img {

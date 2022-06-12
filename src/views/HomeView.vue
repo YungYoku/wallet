@@ -18,14 +18,17 @@ import FeedArea from "@/components/home/feed/FeedArea.vue";
 
 <style scoped>
 main {
-  padding: 20px 10px;
+  position: relative;
+
   display: grid;
+
+  grid-gap: 20px;
   grid-template: calc(55vh - 120px) 45vh / 300px 3fr 1fr;
   grid-template-areas:
     "chart feed purchase"
     "categories feed chat";
-  position: relative;
-  grid-gap: 20px;
+
+  padding: 20px 10px;
 }
 
 .chart {
@@ -34,6 +37,7 @@ main {
 
 .feed {
   grid-area: feed;
+
   border-radius: 10px;
 }
 
@@ -46,37 +50,45 @@ main {
 }
 
 .chat {
+  position: relative;
+
   grid-area: chat;
+
   width: 100%;
   height: 100%;
-  position: relative;
 }
 
 @media (max-width: 1200px) {
   main {
-    padding: 20px 10px;
+    position: relative;
+
     display: grid;
+
+    grid-gap: 20px;
     grid-template: calc(55vh - 120px) 45vh / 300px 1fr 1fr;
     grid-template-areas:
       "chart categories purchase"
       "feed feed chat";
+
+    padding: 20px 10px;
     overflow: hidden;
-    position: relative;
-    grid-gap: 20px;
   }
 }
 
 @media (max-width: 1024px) {
   main {
-    padding: 20px 10px;
+    position: relative;
+
     display: grid;
+
+    grid-gap: 20px;
     grid-template: calc(55vh - 120px) 45vh / 1fr 1fr 1fr;
     grid-template-areas:
       "chart categories purchase"
       "feed feed chat";
+
+    padding: 20px 10px;
     overflow: hidden;
-    position: relative;
-    grid-gap: 20px;
   }
 }
 </style>

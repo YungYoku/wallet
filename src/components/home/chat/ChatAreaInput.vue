@@ -44,44 +44,53 @@ function sendMessage() {
 
 <style scoped>
 form {
-  width: 100%;
-  display: grid;
-  grid-template: 100% / 1fr 50px;
-  align-items: center;
   position: relative;
-  bottom: 0;
   right: 0;
-  animation: borderInputAnim 10s infinite;
+  bottom: 0;
   z-index: 3;
+
+  display: grid;
+  align-items: center;
+
+  grid-template: 100% / 1fr 50px;
+
+  width: 100%;
+
   background-color: var(--color-background2);
+
+  animation: borderInputAnim 10s infinite;
 }
 
 input {
   width: 100%;
   height: 60px;
-  background: transparent;
-  color: var(--color-text);
   padding: 20px;
+
   font-size: 16px;
+  color: var(--color-text);
+
+  background: transparent;
 }
 
 button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   width: 40px;
   height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 button > img {
-  transition: all 0.1s;
   width: 24px;
   height: 24px;
+
+  transition: all 0.1s;
 }
 
 button:hover > img {
-  transition: all 0.1s;
   transform: scale(1.1);
+  transition: all 0.1s;
 }
 
 .dark button img {

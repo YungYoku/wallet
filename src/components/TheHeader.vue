@@ -16,15 +16,15 @@ async function logOut() {
 
     <div class="tools">
       <router-link class="toolsItem" to="/join">
-        <img src="@/assets/img/enter.svg" alt="Присоединиться" />
+        <img alt="Присоединиться" src="@/assets/img/enter.svg" />
       </router-link>
 
       <router-link class="toolsItem" to="/create">
-        <img src="@/assets/img/plus.svg" alt="Создать" />
+        <img alt="Создать" src="@/assets/img/plus.svg" />
       </router-link>
 
       <button class="toolsItem" type="button" @click="logOut">
-        <img src="@/assets/img/exit.svg" alt="Выйти" />
+        <img alt="Выйти" src="@/assets/img/exit.svg" />
       </button>
     </div>
   </header>
@@ -32,49 +32,55 @@ async function logOut() {
 
 <style scoped>
 header {
+  z-index: 10;
+
+  display: grid;
+  justify-content: center;
+  align-items: center;
+
+  grid-gap: 20px;
+  grid-template: auto / repeat(2, 1fr);
+
   height: 60px;
   padding: 0 10px;
+
   background-color: var(--color-header);
-  display: grid;
-  grid-template: auto / repeat(2, 1fr);
-  align-items: center;
-  justify-content: center;
-  grid-gap: 20px;
-  z-index: 10;
   box-shadow: 0 0 10px 1px var(--color-shadow);
 }
 
 header a,
 header button {
   padding: 5px;
-  color: var(--color-text);
+
   line-height: 1;
+  color: var(--color-text);
 }
 
 .logo {
   display: flex;
-  align-items: center;
   justify-content: flex-start;
+  align-items: center;
 }
 
 .logo a {
-  font-style: normal;
-  font-weight: bolder;
   font-size: 18px;
+  font-weight: bolder;
   text-transform: uppercase;
+  font-style: normal;
 }
 
 .tools {
   display: flex;
-  align-items: center;
   justify-content: flex-end;
+  align-items: center;
   gap: 5px;
 }
 
 .toolsItem {
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
+
   font-size: 16px;
 }
 
@@ -91,12 +97,13 @@ header button {
 .toolsItem img {
   width: 60%;
   height: 60%;
+
   transition: all 0.1s;
 }
 
 .toolsItem:hover img {
-  transition: all 0.1s;
   transform: scale(1.1);
+  transition: all 0.1s;
 }
 
 .dark .tools .toolsItem img {

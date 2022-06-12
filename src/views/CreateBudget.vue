@@ -67,22 +67,24 @@ async function createBudget() {
 <style scoped>
 .createBudget {
   display: flex;
-  align-items: center;
-  justify-content: center;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   gap: 40px;
 }
 
 h2 {
   font-size: 32px;
   font-weight: 500;
-  color: var(--color-text);
   text-align: center;
+  color: var(--color-text);
 }
 
 form {
   display: grid;
+
   grid-template: 80px 80px 80px / 1fr;
+
   padding: 10px 20px;
 }
 
@@ -90,11 +92,13 @@ form {
 .password {
   width: 100%;
   height: 60px;
-  font-size: 20px;
   margin-bottom: 20px;
   padding: 10px;
-  border-radius: 10px;
+
+  font-size: 20px;
+
   border: none;
+  border-radius: 10px;
 }
 
 .name:hover,
@@ -104,32 +108,37 @@ form {
 
 .name:focus,
 .password:focus {
-  outline: 5px solid #9966cc;
   background-color: #ffffff;
+  outline: 5px solid #9966cc;
 }
 
 button {
   width: 100%;
   margin-bottom: 20px;
-  font-size: 20px;
   padding: 10px;
-  border-radius: 10px;
-  border: none;
+
+  font-size: 20px;
   color: black;
+
   background-color: #e9e9ed;
+  border: none;
+  border-radius: 10px;
 }
 
 button:hover {
-  background-color: #333333;
   color: #cccccc;
+
+  background-color: #333333;
 }
 
 @media (max-width: 1200px) {
   form {
     display: grid;
+
     grid-template: 80px 80px 80px / 1fr;
-    padding: 10px 20px;
+
     margin: 140px 25% 0 25%;
+    padding: 10px 20px;
   }
 }
 </style>

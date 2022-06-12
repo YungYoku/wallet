@@ -40,8 +40,8 @@ function create() {
       <input
         v-model.trim="color"
         class="color"
-        type="color"
         placeholder="Цвет"
+        type="color"
       />
 
       <input
@@ -59,28 +59,34 @@ function create() {
 <style scoped>
 form {
   display: grid;
+
   grid-template: repeat(2, 50px) / 1fr;
-  box-shadow: 0 0 10px 1px var(--color-shadow);
+
   border-radius: 10px;
+  box-shadow: 0 0 10px 1px var(--color-shadow);
 }
 
 form div {
   display: flex;
-  align-items: center;
   justify-content: center;
-  border-radius: 10px 10px 0 0;
+  align-items: center;
+
   background-color: var(--color-background-soft);
+  border-radius: 10px 10px 0 0;
 }
 
 .color {
-  min-width: 30px;
   width: 30px;
-  min-height: 30px;
+  min-width: 30px;
   height: 30px;
+  min-height: 30px;
   margin: 10px;
-  border-radius: 15px;
   overflow: hidden;
+
   background-color: var(--color-background-soft);
+  border-radius: 15px;
+
+  cursor: pointer;
 }
 
 .name,
@@ -88,29 +94,26 @@ button {
   width: 100%;
   height: 50px;
   min-height: 50px;
-}
 
-.color {
-  cursor: pointer;
-}
-
-.name {
-  text-align: center;
-  background-color: var(--color-background-soft);
-  color: var(--color-text);
-  padding: 10px 50px 10px 10px;
-  transition: none;
-  border-radius: 10px 10px 0 0;
-}
-
-.name,
-button {
   font-size: 16px;
 }
 
-button {
-  background-color: var(--color-background2);
+.name {
+  padding: 10px 50px 10px 10px;
+
+  text-align: center;
   color: var(--color-text);
+
+  background-color: var(--color-background-soft);
+  border-radius: 10px 10px 0 0;
+
+  transition: none;
+}
+
+button {
+  color: var(--color-text);
+
+  background-color: var(--color-background2);
   border-radius: 0 0 10px 10px;
 }
 

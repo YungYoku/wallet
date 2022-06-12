@@ -56,8 +56,8 @@ let categories = computed<Category[]>(() => {
       <bg-loading v-if="loadingStore.loading" />
 
       <categories-area-item
-        v-else
         v-for="category in categories"
+        v-else
         :key="category.name + category.price"
         :category="category.name"
         :color="category.color"
@@ -69,22 +69,28 @@ let categories = computed<Category[]>(() => {
 
 <style scoped>
 .categoriesArea {
+  display: grid;
+
+  grid-gap: 10px;
+  grid-template: 100px auto / 1fr;
+
   width: 100%;
   height: 100%;
+
   color: #ffffff;
-  display: grid;
-  grid-template: 100px auto / 1fr;
-  grid-gap: 10px;
 }
 
 .areaItems {
   position: relative;
-  overflow-y: auto;
-  overflow-x: hidden;
   top: 0;
   left: 0;
+
   display: flex;
   flex-direction: column;
+
+  overflow-x: hidden;
+  overflow-y: auto;
+
   border-radius: 10px;
 }
 </style>

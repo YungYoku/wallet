@@ -37,10 +37,12 @@ defineProps({
 
 <style>
 .messageWrap {
-  width: 100%;
+  position: relative;
+
   display: flex;
   align-items: center;
-  position: relative;
+
+  width: 100%;
   margin-top: 10px;
 }
 
@@ -53,13 +55,17 @@ defineProps({
 }
 
 .message {
-  display: inline;
-  border-radius: 10px;
-  padding: 10px;
   position: relative;
+
+  display: inline;
+
   min-width: 52px;
-  background-color: var(--color-background2);
+  padding: 10px;
+
   color: var(--color-text);
+
+  background-color: var(--color-background2);
+  border-radius: 10px;
 }
 
 .message:hover {
@@ -68,16 +74,18 @@ defineProps({
 
 .nameAndDate {
   display: flex;
-  align-items: center;
   justify-content: flex-start;
+  align-items: center;
 }
 
 .message h3 {
   position: relative;
   top: 0;
+
+  margin-right: 10px;
+
   font-size: 14px;
   font-weight: 600;
-  margin-right: 10px;
 }
 
 .message h4 {

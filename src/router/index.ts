@@ -56,7 +56,7 @@ const router = createRouter({
     {
       path: "/404",
       name: "404",
-      component: () => import("@/views/Page404.vue"),
+      component: () => import("@/views/ErrorView.vue"),
       meta: {
         layout: "EmptyLayout",
         auth: true,
