@@ -1,23 +1,26 @@
 @font-face {
-    font-family: 'Montserrat Alternates';
-    src: url('MontserratAlternates-Regular.woff2') format('woff2');
+    font-family: "Montserrat Alternates";
     font-weight: 400;
     font-style: normal;
+
+    src: url("MontserratAlternates-Regular.woff2") format("woff2");
     font-display: swap;
 }
 
 @font-face {
-    font-family: 'Montserrat Alternates';
-    src: url('MontserratAlternates-SemiBold.woff2') format('woff2');
+    font-family: "Montserrat Alternates";
     font-weight: 600;
     font-style: normal;
+
+    src: url("MontserratAlternates-SemiBold.woff2") format("woff2");
     font-display: swap;
 }
 
 @font-face {
-    font-family: 'Montserrat Alternates';
-    src: url('MontserratAlternates-Bold.woff2') format('woff2');
+    font-family: "Montserrat Alternates";
     font-weight: 700;
     font-style: normal;
+
+    src: url("MontserratAlternates-Bold.woff2") format("woff2");
     font-display: swap;
 }
