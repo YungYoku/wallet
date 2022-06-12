@@ -81,17 +81,15 @@ header button {
   justify-content: center;
   align-items: center;
 
+  width: 48px;
+  height: 48px;
+
   font-size: 16px;
 }
 
 .logo a:hover,
 .toolsItem:hover {
   text-decoration: underline;
-}
-
-.toolsItem {
-  width: 48px;
-  height: 48px;
 }
 
 .toolsItem img {
