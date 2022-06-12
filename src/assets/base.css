@@ -98,7 +98,7 @@
   }
 }
 
-@supports (scrollbar-width: thin) {
+@supports (scrollbar-width: t hin) {
   *,
   *::before,
   *::after {
@@ -106,11 +106,11 @@
   }
 }
 
-@supports (scrollbar-color: #9966cc #b39ad1) {
+@supports (scrollbar-color: #cccccc #d2d2d2) {
   *,
   *::before,
   *::after {
-    scrollbar-color: #9966cc #b39ad1;
+    scrollbar-color: #606060 #dedede;
   }
 }
 
@@ -120,11 +120,11 @@
 }
 
 *::-webkit-scrollbar-track {
-  background: #b39ad1;
+  background: #dedede;
 }
 
 *::-webkit-scrollbar-thumb {
-  background-color: #9966cc;
+  background-color: #606060;
 }
 
 body {
