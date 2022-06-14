@@ -30,7 +30,7 @@ const budgetsStore = useBudgetsStore();
   </div>
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
 .feedArea {
   display: grid;
 
@@ -44,17 +44,17 @@ const budgetsStore = useBudgetsStore();
   background-color: var(--color-background-soft);
   border-radius: 10px;
   box-shadow: 0 0 10px 1px var(--color-shadow);
-}
 
-.feedAreaPurchases {
-  position: relative;
-  top: 0;
-  left: 0;
+  .feedAreaPurchases {
+    position: relative;
+    top: 0;
+    left: 0;
 
-  display: flex;
-  flex-direction: column;
+    display: flex;
+    flex-direction: column;
 
-  overflow-x: hidden;
-  overflow-y: auto;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
 }
 </style>

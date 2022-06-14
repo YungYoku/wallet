@@ -37,7 +37,7 @@ function swapBudget(bid: string) {
   </div>
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
 .budgetWrap {
   display: flex;
   justify-content: space-between;
@@ -45,85 +45,85 @@ function swapBudget(bid: string) {
 
   width: 100%;
   height: 100%;
-}
 
-.budget-div {
-  position: relative;
+  .budget-div {
+    position: relative;
 
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 
-  width: 100%;
-  height: 100%;
-}
+    width: 100%;
+    height: 100%;
 
-.budget-nav {
-  z-index: 10;
+    .budget-nav {
+      z-index: 10;
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
 
-  width: 300px;
-  height: 100%;
+      width: 300px;
+      height: 100%;
 
-  border-radius: 10px;
-  gap: 10px;
-}
+      border-radius: 10px;
+      gap: 10px;
 
-.budget-content {
-  position: absolute;
-  top: 40px;
-  left: 0;
-  z-index: 9;
+      span {
+        font-size: 16px;
+        text-align: center;
+      }
 
-  display: none;
+      span.arrow {
+        transform: rotate(90deg);
+      }
+    }
 
-  width: 300px;
-  overflow: hidden;
+    .budget-content {
+      position: absolute;
+      top: 40px;
+      left: 0;
+      z-index: 9;
 
-  border-radius: 0 0 10px 10px;
-}
+      display: none;
 
-.budget-div:hover .budget-content {
-  display: block;
-}
+      width: 300px;
+      overflow: hidden;
 
-.budget-div:hover .budget-nav {
-  color: #333333;
+      border-radius: 0 0 10px 10px;
 
-  background-color: #ffffff;
-}
+      button {
+        display: block;
 
-.budget-nav span {
-  font-size: 16px;
-  text-align: center;
-}
+        width: 100%;
+        padding: 10px;
 
-.budget-nav span.arrow {
-  transform: rotate(90deg);
-}
+        color: #ffffff;
 
-.budget-div:hover .budget-nav span.arrow {
-  transform: rotate(-90deg);
-}
+        background-color: #333333;
+      }
+    }
 
-.budget-content button {
-  display: block;
+    &:hover .budget-content {
+      display: block;
+    }
 
-  width: 100%;
-  padding: 10px;
+    &:hover .budget-nav {
+      color: #333333;
 
-  color: #ffffff;
+      background-color: #ffffff;
+    }
 
-  background-color: #333333;
-}
+    &:hover .budget-nav span.arrow {
+      transform: rotate(-90deg);
+    }
 
-.budget-div:hover .budget-content button:hover {
-  color: #333333;
+    &:hover .budget-content button:hover {
+      color: #333333;
 
-  background-color: #ffffff;
+      background-color: #ffffff;
+    }
+  }
 }
 </style>

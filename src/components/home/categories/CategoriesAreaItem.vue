@@ -31,7 +31,7 @@ defineProps({
   </div>
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
 .category {
   display: flex;
   justify-content: space-between;
@@ -45,27 +45,27 @@ defineProps({
 
   background-color: var(--color-background2);
   border-radius: 10px;
-}
 
-.category:hover {
-  background-color: var(--color-background-mute);
-}
+  &:hover {
+    background-color: var(--color-background-mute);
+  }
 
-.category div {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-}
+  div {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
 
-.category h3 {
-  font-size: 16px;
-}
+    div {
+      width: 30px;
+      height: 30px;
+      margin-right: 10px;
 
-.category div div {
-  width: 30px;
-  height: 30px;
-  margin-right: 10px;
+      border-radius: 15px;
+    }
+  }
 
-  border-radius: 15px;
+  h3 {
+    font-size: 16px;
+  }
 }
 </style>

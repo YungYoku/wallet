@@ -67,7 +67,7 @@ let categories = computed<Category[]>(() => {
   </div>
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
 .categoriesArea {
   display: grid;
 
@@ -78,19 +78,19 @@ let categories = computed<Category[]>(() => {
   height: 100%;
 
   color: #ffffff;
-}
 
-.areaItems {
-  position: relative;
-  top: 0;
-  left: 0;
+  .areaItems {
+    position: relative;
+    top: 0;
+    left: 0;
 
-  display: flex;
-  flex-direction: column;
+    display: flex;
+    flex-direction: column;
 
-  overflow-x: hidden;
-  overflow-y: auto;
+    overflow-x: hidden;
+    overflow-y: auto;
 
-  border-radius: 10px;
+    border-radius: 10px;
+  }
 }
 </style>

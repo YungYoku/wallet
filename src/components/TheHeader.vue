@@ -30,7 +30,7 @@ async function logOut() {
   </header>
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
 header {
   z-index: 10;
 
@@ -46,69 +46,85 @@ header {
 
   background-color: var(--color-header);
   box-shadow: 0 0 10px 1px var(--color-shadow);
+
+  a,
+  button {
+    padding: 5px;
+
+    line-height: 1;
+    color: var(--color-text);
+  }
+
+  .logo {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+    a {
+      font-size: 18px;
+      font-weight: bolder;
+      text-transform: uppercase;
+      font-style: normal;
+    }
+  }
+
+  .tools {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 5px;
+
+    .toolsItem {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      width: 48px;
+      height: 48px;
+
+      font-size: 16px;
+
+      img {
+        width: 60%;
+        height: 60%;
+
+        transition: all 0.1s;
+      }
+
+      &:hover img {
+        transform: scale(1.1);
+        transition: all 0.1s;
+      }
+    }
+  }
+
+  .logo a:hover,
+  .toolsItem:hover {
+    text-decoration: underline;
+  }
 }
 
-header a,
-header button {
-  padding: 5px;
-
-  line-height: 1;
-  color: var(--color-text);
+.dark {
+  header {
+    .tools {
+      .toolsItem {
+        img {
+          filter: invert(1);
+        }
+      }
+    }
+  }
 }
 
-.logo {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-}
-
-.logo a {
-  font-size: 18px;
-  font-weight: bolder;
-  text-transform: uppercase;
-  font-style: normal;
-}
-
-.tools {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  gap: 5px;
-}
-
-.toolsItem {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  width: 48px;
-  height: 48px;
-
-  font-size: 16px;
-}
-
-.logo a:hover,
-.toolsItem:hover {
-  text-decoration: underline;
-}
-
-.toolsItem img {
-  width: 60%;
-  height: 60%;
-
-  transition: all 0.1s;
-}
-
-.toolsItem:hover img {
-  transform: scale(1.1);
-  transition: all 0.1s;
-}
-
-.dark .tools .toolsItem img {
-  filter: invert(1);
-}
-
-.light .tools .toolsItem img {
-  filter: invert(0.5);
+.light {
+  header {
+    .tools {
+      .toolsItem {
+        img {
+          filter: invert(0.5);
+        }
+      }
+    }
+  }
 }
 </style>

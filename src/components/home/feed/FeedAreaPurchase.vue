@@ -58,7 +58,15 @@ async function deletePurchase() {
   </div>
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
+.dark button img {
+  filter: invert(1);
+}
+
+.light button img {
+  filter: invert(0.5);
+}
+
 .feedPurchase {
   position: relative;
 
@@ -76,44 +84,36 @@ async function deletePurchase() {
   border-left: 4px solid v-bind("props.color");
   border-radius: 10px;
   justify-items: center;
-}
 
-.feedPurchase:hover {
-  background-color: var(--color-background-mute);
-}
+  &:hover {
+    background-color: var(--color-background-mute);
+  }
 
-h3,
-button {
-  font-size: 16px;
-  color: var(--color-text);
-}
+  h3,
+  button {
+    font-size: 16px;
+    color: var(--color-text);
+  }
 
-button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-  width: 32px;
-  height: 32px;
-}
+    width: 32px;
+    height: 32px;
 
-button img {
-  width: 70%;
-  height: 70%;
+    img {
+      width: 70%;
+      height: 70%;
 
-  transition: all 0.1s;
-}
+      transition: all 0.1s;
+    }
 
-button:hover img {
-  transform: scale(1.1);
-  transition: all 0.1s;
-}
-
-.dark button img {
-  filter: invert(1);
-}
-
-.light button img {
-  filter: invert(0.5);
+    &:hover img {
+      transform: scale(1.1);
+      transition: all 0.1s;
+    }
+  }
 }
 </style>

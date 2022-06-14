@@ -56,7 +56,7 @@ function create() {
   </form>
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
 form {
   display: grid;
 
@@ -64,60 +64,60 @@ form {
 
   border-radius: 10px;
   box-shadow: 0 0 10px 1px var(--color-shadow);
-}
 
-form div {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-  background-color: var(--color-background-soft);
-  border-radius: 10px 10px 0 0;
-}
+    background-color: var(--color-background-soft);
+    border-radius: 10px 10px 0 0;
+  }
 
-.color {
-  width: 30px;
-  min-width: 30px;
-  height: 30px;
-  min-height: 30px;
-  margin: 10px;
-  overflow: hidden;
+  .color {
+    width: 30px;
+    min-width: 30px;
+    height: 30px;
+    min-height: 30px;
+    margin: 10px;
+    overflow: hidden;
 
-  background-color: var(--color-background-soft);
-  border-radius: 15px;
+    background-color: var(--color-background-soft);
+    border-radius: 15px;
 
-  cursor: pointer;
-}
+    cursor: pointer;
+  }
 
-.name,
-button {
-  width: 100%;
-  height: 50px;
-  min-height: 50px;
+  .name,
+  button {
+    width: 100%;
+    height: 50px;
+    min-height: 50px;
 
-  font-size: 16px;
-}
+    font-size: 16px;
+  }
 
-.name {
-  padding: 10px 50px 10px 10px;
+  .name {
+    padding: 10px 50px 10px 10px;
 
-  text-align: center;
-  color: var(--color-text);
+    text-align: center;
+    color: var(--color-text);
 
-  background-color: var(--color-background-soft);
-  border-radius: 10px 10px 0 0;
+    background-color: var(--color-background-soft);
+    border-radius: 10px 10px 0 0;
 
-  transition: none;
-}
+    transition: none;
+  }
 
-button {
-  color: var(--color-text);
+  button {
+    color: var(--color-text);
 
-  background-color: var(--color-background2);
-  border-radius: 0 0 10px 10px;
-}
+    background-color: var(--color-background2);
+    border-radius: 0 0 10px 10px;
 
-button:hover {
-  background-color: v-bind("color");
+    &:hover {
+      background-color: v-bind("color");
+    }
+  }
 }
 </style>

@@ -28,7 +28,7 @@ budgetsStore.subscribeInfo();
   </component>
 </template>
 
-<style>
+<style lang="scss" scoped>
 #app {
   height: 100vh;
 

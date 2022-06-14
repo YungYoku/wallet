@@ -42,7 +42,7 @@ function sendMessage() {
   </form>
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
 form {
   position: relative;
   right: 0;
@@ -59,45 +59,59 @@ form {
   background-color: var(--color-background2);
 
   animation: borderInputAnim 10s infinite;
+
+  input {
+    width: 100%;
+    height: 60px;
+    padding: 20px;
+
+    font-size: 16px;
+    color: var(--color-text);
+
+    background: transparent;
+  }
+
+  button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 40px;
+    height: 40px;
+
+    img {
+      width: 24px;
+      height: 24px;
+
+      transition: all 0.1s;
+    }
+
+    &:hover {
+      img {
+        transform: scale(1.1);
+        transition: all 0.1s;
+      }
+    }
+  }
 }
 
-input {
-  width: 100%;
-  height: 60px;
-  padding: 20px;
-
-  font-size: 16px;
-  color: var(--color-text);
-
-  background: transparent;
+.dark {
+  form {
+    button {
+      img {
+        filter: invert(1);
+      }
+    }
+  }
 }
 
-button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  width: 40px;
-  height: 40px;
-}
-
-button > img {
-  width: 24px;
-  height: 24px;
-
-  transition: all 0.1s;
-}
-
-button:hover > img {
-  transform: scale(1.1);
-  transition: all 0.1s;
-}
-
-.dark button img {
-  filter: invert(1);
-}
-
-.light button img {
-  filter: invert(0.5);
+.light {
+  form {
+    button {
+      img {
+        filter: invert(0.5);
+      }
+    }
+  }
 }
 </style>

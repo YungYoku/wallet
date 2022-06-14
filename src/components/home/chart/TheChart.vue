@@ -84,29 +84,29 @@ let data = computed<ChartData>(() => {
   </aside>
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
 aside {
   display: grid;
 
   grid-gap: 20px;
   grid-template: 40px 300px auto / 1fr;
-}
 
-span {
-  text-align: center;
-}
+  span {
+    text-align: center;
+  }
 
-.canvasWrap {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+  .canvasWrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
-.emptyCircle {
-  width: 300px;
-  height: 300px;
+  .emptyCircle {
+    width: 300px;
+    height: 300px;
 
-  border: 2px solid #ffffff;
-  border-radius: 50%;
+    border: 2px solid #ffffff;
+    border-radius: 50%;
+  }
 }
 </style>

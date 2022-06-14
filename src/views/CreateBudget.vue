@@ -43,7 +43,7 @@ async function createBudget() {
 
 <template>
   <div class="createBudget">
-    <h2>Создать бюджет</h2>
+    <h2>Создать</h2>
 
     <form @submit.prevent="createBudget">
       <input
@@ -64,81 +64,85 @@ async function createBudget() {
   </div>
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
 .createBudget {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 40px;
-}
+  gap: 60px;
 
-h2 {
-  font-size: 32px;
-  font-weight: 500;
-  text-align: center;
-  color: var(--color-text);
-}
+  h2 {
+    font-size: 70px;
+    font-weight: 500;
+    text-align: center;
+    color: var(--color-text);
 
-form {
-  display: grid;
+    @media screen and (max-width: 768px) {
+      font-size: 50px;
+    }
 
-  grid-template: 80px 80px 80px / 1fr;
+    @media screen and (max-width: 480px) {
+      font-size: 40px;
+    }
+  }
 
-  padding: 10px 20px;
-}
-
-.name,
-.password {
-  width: 100%;
-  height: 60px;
-  margin-bottom: 20px;
-  padding: 10px;
-
-  font-size: 20px;
-
-  border: none;
-  border-radius: 10px;
-}
-
-.name:hover,
-.password:hover {
-  background-color: #f0f0f0;
-}
-
-.name:focus,
-.password:focus {
-  background-color: #ffffff;
-  outline: 5px solid #9966cc;
-}
-
-button {
-  width: 100%;
-  margin-bottom: 20px;
-  padding: 10px;
-
-  font-size: 20px;
-  color: black;
-
-  background-color: #e9e9ed;
-  border: none;
-  border-radius: 10px;
-}
-
-button:hover {
-  color: #cccccc;
-
-  background-color: #333333;
-}
-
-@media (max-width: 1200px) {
   form {
     display: grid;
 
     grid-template: 80px 80px 80px / 1fr;
 
-    margin: 140px 25% 0 25%;
     padding: 10px 20px;
+
+    .name,
+    .password {
+      width: 100%;
+      height: 60px;
+      margin-bottom: 20px;
+      padding: 10px;
+
+      font-size: 20px;
+
+      border: none;
+      border-radius: 10px;
+
+      &:hover {
+        background-color: #f0f0f0;
+      }
+
+      &:focus {
+        background-color: #ffffff;
+        outline: 5px solid #9966cc;
+      }
+    }
+
+    button {
+      width: 100%;
+      margin-bottom: 20px;
+      padding: 10px;
+
+      font-size: 20px;
+      color: black;
+
+      background-color: #e9e9ed;
+      border: none;
+      border-radius: 10px;
+
+      &:hover {
+        color: #cccccc;
+
+        background-color: #333333;
+      }
+    }
+
+    @media (max-width: 1200px) {
+      display: grid;
+
+      grid-template: 80px 80px 80px / 1fr;
+
+      margin: 0 25%;
+      padding: 10px 20px;
+    }
   }
 }
 </style>

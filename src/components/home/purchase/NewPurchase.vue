@@ -108,7 +108,7 @@ function create() {
   </div>
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
 form {
   display: grid;
 
@@ -120,67 +120,73 @@ form {
   background-color: var(--color-background-soft);
   border-radius: 10px;
   box-shadow: 0 0 10px 1px var(--color-shadow);
-}
 
-label {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
+  label {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
 
-  height: 40px;
-  padding: 5px 18px;
+    height: 40px;
+    padding: 5px 18px;
 
-  font-size: 14px;
-  gap: 5px;
-}
+    font-size: 14px;
+    gap: 5px;
 
-input {
-  border-radius: 5px;
-}
+    input {
+      width: 100%;
+      height: 40px;
+      padding: 5px 10px;
 
-input,
-select,
-button {
-  width: 100%;
-  height: 40px;
-  padding: 5px 10px;
+      font-size: 14px;
+      color: var(--color-text);
 
-  font-size: 14px;
-}
+      background-color: var(--color-background-soft);
+      border-radius: 5px;
 
-input,
-select {
-  color: var(--color-text);
+      &:focus {
+        background-color: var(--color-background-mute);
+      }
 
-  background-color: var(--color-background-soft);
-}
+      &:hover {
+        background-color: var(--color-background-mute);
+      }
+    }
+  }
 
-select {
-  width: calc(100% - 10px);
-  margin: 0 5px;
+  select,
+  button {
+    width: 100%;
+    height: 40px;
+    padding: 5px 10px;
 
-  border-radius: 5px;
+    font-size: 14px;
+  }
 
-  cursor: pointer;
-}
+  select {
+    width: calc(100% - 10px);
+    margin: 0 5px;
 
-select:hover,
-input:hover {
-  background-color: var(--color-background-mute);
-}
+    color: var(--color-text);
 
-input:focus {
-  background-color: var(--color-background-mute);
-}
+    background-color: var(--color-background-soft);
+    border-radius: 5px;
 
-button {
-  color: var(--color-text);
+    cursor: pointer;
 
-  background-color: var(--color-background2);
-  border-radius: 0 0 10px 10px;
-}
+    &:hover {
+      background-color: var(--color-background-mute);
+    }
+  }
 
-button:hover {
-  background-color: #9966cc;
+  button {
+    color: var(--color-text);
+
+    background-color: var(--color-background2);
+    border-radius: 0 0 10px 10px;
+
+    &:hover {
+      background-color: #9966cc;
+    }
+  }
 }
 </style>

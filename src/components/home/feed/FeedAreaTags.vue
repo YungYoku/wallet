@@ -9,7 +9,7 @@
   </div>
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
 div {
   display: grid;
   align-items: center;
@@ -23,11 +23,11 @@ div {
   background-color: var(--color-background2);
   border-radius: 10px 10px 0 0;
   justify-items: center;
-}
 
-h3 {
-  font-size: 16px;
-  font-weight: 600;
-  color: var(--color-text);
+  h3 {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--color-text);
+  }
 }
 </style>

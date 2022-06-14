@@ -4,7 +4,7 @@
   <div class="loading"></div>
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
 .loading {
   position: absolute;
   top: 0;
@@ -29,14 +29,14 @@
   border-radius: 10px;
 
   animation: 1s loading linear infinite;
-}
 
-@keyframes loading {
-  from {
-    background-position: 100% 0;
-  }
-  to {
-    background-position: 0 0;
+  @keyframes loading {
+    from {
+      background-position: 100% 0;
+    }
+    to {
+      background-position: 0 0;
+    }
   }
 }
 </style>

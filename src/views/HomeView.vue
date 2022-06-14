@@ -16,7 +16,7 @@ import FeedArea from "@/components/home/feed/FeedArea.vue";
   </main>
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
 main {
   position: relative;
 
@@ -29,37 +29,35 @@ main {
     "categories feed chat";
 
   padding: 20px 10px;
-}
 
-.chart {
-  grid-area: chart;
-}
+  .chart {
+    grid-area: chart;
+  }
 
-.feed {
-  grid-area: feed;
+  .feed {
+    grid-area: feed;
 
-  border-radius: 10px;
-}
+    border-radius: 10px;
+  }
 
-.categories {
-  grid-area: categories;
-}
+  .categories {
+    grid-area: categories;
+  }
 
-.purchase {
-  grid-area: purchase;
-}
+  .purchase {
+    grid-area: purchase;
+  }
 
-.chat {
-  position: relative;
+  .chat {
+    position: relative;
 
-  grid-area: chat;
+    grid-area: chat;
 
-  width: 100%;
-  height: 100%;
-}
+    width: 100%;
+    height: 100%;
+  }
 
-@media (max-width: 1200px) {
-  main {
+  @media (max-width: 1200px) {
     position: relative;
 
     display: grid;
@@ -73,10 +71,8 @@ main {
     padding: 20px 10px;
     overflow: hidden;
   }
-}
 
-@media (max-width: 1024px) {
-  main {
+  @media (max-width: 1024px) {
     position: relative;
 
     display: grid;

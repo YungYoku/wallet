@@ -4,7 +4,7 @@
   <div>404</div>
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
 div {
   width: 100%;
   height: 100%;

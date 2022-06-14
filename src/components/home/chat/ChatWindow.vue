@@ -10,7 +10,7 @@ import ChatAreaInput from "./ChatAreaInput.vue";
   </div>
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
 .wrap {
   position: relative;
 

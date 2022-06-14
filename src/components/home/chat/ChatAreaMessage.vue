@@ -35,7 +35,7 @@ defineProps({
   </div>
 </template>
 
-<style>
+<style lang="scss" scoped>
 .messageWrap {
   position: relative;
 
@@ -44,57 +44,57 @@ defineProps({
 
   width: 100%;
   margin-top: 10px;
-}
 
-.messageLeft {
-  justify-content: flex-start;
-}
+  .messageLeft {
+    justify-content: flex-start;
+  }
 
-.messageRight {
-  justify-content: flex-end;
-}
+  .messageRight {
+    justify-content: flex-end;
+  }
 
-.message {
-  position: relative;
+  .message {
+    position: relative;
 
-  display: inline;
+    display: inline;
 
-  min-width: 52px;
-  padding: 10px;
+    min-width: 52px;
+    padding: 10px;
 
-  color: var(--color-text);
+    color: var(--color-text);
 
-  background-color: var(--color-background2);
-  border-radius: 10px;
-}
+    background-color: var(--color-background2);
+    border-radius: 10px;
 
-.message:hover {
-  background-color: var(--color-background-mute);
-}
+    &:hover {
+      background-color: var(--color-background-mute);
+    }
 
-.nameAndDate {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-}
+    .nameAndDate {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
 
-.message h3 {
-  position: relative;
-  top: 0;
+      h3 {
+        position: relative;
+        top: 0;
 
-  margin-right: 10px;
+        margin-right: 10px;
 
-  font-size: 14px;
-  font-weight: 600;
-}
+        font-size: 14px;
+        font-weight: 600;
+      }
 
-.message h4 {
-  font-size: 14px;
-  font-weight: 400;
-}
+      h4 {
+        font-size: 14px;
+        font-weight: 400;
+      }
+    }
 
-.message h5 {
-  font-size: 16px;
-  font-weight: 400;
+    h5 {
+      font-size: 16px;
+      font-weight: 400;
+    }
+  }
 }
 </style>

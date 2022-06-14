@@ -46,7 +46,7 @@ let chat = computed<Message[]>(() => {
   </div>
 </template>
 
-<style>
+<style lang="scss" scoped>
 .messagesWindowWrap {
   position: relative;
   top: 0;
