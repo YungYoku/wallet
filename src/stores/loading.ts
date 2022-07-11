@@ -11,12 +11,10 @@ export const useLoadingStore = defineStore({
 
   actions: {
     show() {
-      console.log("showed");
       this.loading = true;
     },
 
     hide() {
-      console.log("hidden");
       this.loading = false;
     },
   },
