@@ -25,7 +25,7 @@ async function joinBudget() {
     await updateDoc(doc(db, "users", logsStore.uid), {
       budgets: arrayUnion(budget.id),
     });
-    await budgetsStore.setBid(budget.id);
+    await budgetsStore.swapBudget(budget.id);
     await router.push("/");
   }
 }
@@ -86,6 +86,7 @@ async function joinBudget() {
 
     grid-template: 80px 80px 80px / 1fr;
 
+    min-width: 300px;
     padding: 10px 20px;
 
     .name,

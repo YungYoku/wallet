@@ -17,7 +17,7 @@ export const useBudgetsStore = defineStore({
       balance: 0,
       categories: [] as Category[],
       chat: [] as Message[],
-      name: "",
+      name: "Бюджет",
       purchases: [] as Purchase[],
     },
     bid: localStorage.bid ? localStorage.bid : "",
@@ -29,13 +29,20 @@ export const useBudgetsStore = defineStore({
   getters: {},
 
   actions: {
-    async setBid(bid: string) {
-      const loadingStore = useLoadingStore();
-
+    setBid(bid: string) {
       this.bid = bid;
       localStorage.bid = bid;
+    },
+
+    async swapBudget(bid: string) {
+      const loadingStore = useLoadingStore();
+
       loadingStore.show();
+
       await this.budgetUnsubscribe();
+
+      this.setBid(bid);
+
       await this.subscribeBudgetInfo().then(() => {
         loadingStore.hide();
       });
@@ -43,10 +50,12 @@ export const useBudgetsStore = defineStore({
 
     async subscribeInfo() {
       const logs = useLogsStore();
+
       if (logs.uid) {
         const loadingStore = useLoadingStore();
 
         loadingStore.show();
+
         await logs.subscribeUserInfo().then(() => {
           this.subscribeBudgetInfo().then(() => {
             loadingStore.hide();
@@ -79,7 +88,7 @@ export const useBudgetsStore = defineStore({
 
     setBudgets(budgets: string[]) {
       this.budgets = budgets;
-      this.setBid(budgets[0]);
+      this.swapBudget(budgets[0]);
     },
 
     unsubscribe() {

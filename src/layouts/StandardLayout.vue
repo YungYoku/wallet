@@ -9,7 +9,7 @@ import TheHeader from "@/components/TheHeader.vue";
   </div>
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
 div {
   display: grid;
 

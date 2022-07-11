@@ -18,7 +18,7 @@ function dateFilter(date: MessageDate) {
   return hours + ":" + minutes;
 }
 
-let chat = computed<Message[]>(() => {
+const chat = computed<Message[]>(() => {
   let _chat = budgetsStore.budget.chat;
   if (_chat) {
     _chat = _chat.reverse();

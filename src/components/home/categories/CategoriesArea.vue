@@ -21,7 +21,7 @@ function sortCategories(categories: Category[]) {
   for (let i = 0; i < categories.length; i++) {
     for (let j = 0; j < categories.length - 1; j++) {
       if (categories[j].price < categories[j + 1].price) {
-        let temp = categories[j];
+        const temp = categories[j];
         categories[j] = categories[j + 1];
         categories[j + 1] = temp;
       }
@@ -30,7 +30,7 @@ function sortCategories(categories: Category[]) {
   return categories;
 }
 
-let categories = computed<Category[]>(() => {
+const categories = computed<Category[]>(() => {
   let _categories: Category[] = budgetsStore.budget.categories;
 
   if (budgetsStore.budget.categories && budgetsStore.budget.categories[0]) {

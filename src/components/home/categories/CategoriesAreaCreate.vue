@@ -6,8 +6,8 @@ import { useBudgetsStore } from "@/stores/budgets";
 
 const budgetsStore = useBudgetsStore();
 
-let name = ref("");
-let color = ref("#9966cc");
+const name = ref("");
+const color = ref("#9966cc");
 
 function isValid() {
   return name.value && color.value;

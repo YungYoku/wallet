@@ -10,7 +10,7 @@ const budgetsStore = useBudgetsStore();
 const logsStore = useLogsStore();
 const router = useRouter();
 
-let budget = reactive({
+const budget = reactive({
   name: "",
   pass: "",
   id: "",
@@ -35,7 +35,7 @@ async function createBudget() {
       budgets: arrayUnion(budget.id),
     });
 
-    await budgetsStore.setBid(budget.id);
+    await budgetsStore.swapBudget(budget.id);
     await router.push("/");
   }
 }
@@ -92,6 +92,7 @@ async function createBudget() {
 
     grid-template: 80px 80px 80px / 1fr;
 
+    min-width: 300px;
     padding: 10px 20px;
 
     .name,

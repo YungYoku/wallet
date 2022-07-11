@@ -8,7 +8,7 @@ import { useLogsStore } from "@/stores/logs";
 const budgetsStore = useBudgetsStore();
 const logsStore = useLogsStore();
 
-let message = ref("");
+const message = ref("");
 
 function getDate() {
   return {

@@ -6,10 +6,10 @@ import { useBudgetsStore } from "@/stores/budgets";
 
 const budgetsStore = useBudgetsStore();
 
-let itemName = ref("");
-let userName = ref("");
-let price = ref(0);
-let category = ref({
+const itemName = ref("");
+const userName = ref("");
+const price = ref(0);
+const category = ref({
   color: "",
   name: "Категория",
   price: 0,

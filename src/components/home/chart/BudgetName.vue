@@ -1,29 +1,42 @@
 <script lang="ts" setup>
+import { computed } from "vue";
 import { useBudgetsStore } from "@/stores/budgets";
 
 const budgetsStore = useBudgetsStore();
 
-function swapBudget(bid: string) {
-  budgetsStore.setBid(bid);
+const borderRadius = computed(() => {
+  if (budgetsStore.budgets.length > 1) {
+    return "10px 10px 0 0";
+  }
+
+  return "10px";
+});
+
+async function swapBudget(bid: string) {
+  await budgetsStore.swapBudget(bid);
 }
 </script>
 
 <template>
-  <div class="budgetWrap">
-    <div class="budget-div">
+  <div class="budget">
+    <div class="budget__content">
       <div
         :style="{
-          borderRadius: budgetsStore.budgets[1] ? '10px 10px 0 0' : '10px',
+          borderRadius,
         }"
-        class="budget-nav"
+        class="budget__content-nav"
       >
         <span>
-          {{ budgetsStore.budget.name ? budgetsStore.budget.name : "Бюджет" }}
+          {{ budgetsStore.budget.name }}
         </span>
+
         <span class="arrow">></span>
       </div>
 
-      <div v-if="budgetsStore.budgets[1]" class="budget-content">
+      <div
+        v-if="budgetsStore.budgets.length > 1"
+        class="budget__content-buttons"
+      >
         <button
           v-for="budget in budgetsStore.budgets"
           :key="budget"
@@ -38,7 +51,7 @@ function swapBudget(bid: string) {
 </template>
 
 <style lang="scss" scoped>
-.budgetWrap {
+.budget {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -46,7 +59,7 @@ function swapBudget(bid: string) {
   width: 100%;
   height: 100%;
 
-  .budget-div {
+  &__content {
     position: relative;
 
     display: flex;
@@ -57,7 +70,7 @@ function swapBudget(bid: string) {
     width: 100%;
     height: 100%;
 
-    .budget-nav {
+    &-nav {
       z-index: 10;
 
       display: flex;
@@ -80,7 +93,7 @@ function swapBudget(bid: string) {
       }
     }
 
-    .budget-content {
+    &-buttons {
       position: absolute;
       top: 40px;
       left: 0;
@@ -105,21 +118,21 @@ function swapBudget(bid: string) {
       }
     }
 
-    &:hover .budget-content {
+    &:hover &-buttons {
       display: block;
     }
 
-    &:hover .budget-nav {
+    &:hover &-nav {
       color: #333333;
 
       background-color: #ffffff;
     }
 
-    &:hover .budget-nav span.arrow {
+    &:hover &-nav span.arrow {
       transform: rotate(-90deg);
     }
 
-    &:hover .budget-content button:hover {
+    &:hover &-buttons button:hover {
       color: #333333;
 
       background-color: #ffffff;

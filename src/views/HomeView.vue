@@ -2,7 +2,7 @@
 import CategoriesArea from "@/components/home/categories/CategoriesArea.vue";
 import ChatWindow from "@/components/home/chat/ChatWindow.vue";
 import NewPurchase from "@/components/home/purchase/NewPurchase.vue";
-import TheChart from "@/components/home/chart/TheChart.vue";
+import BudgetChart from "@/components/home/chart/BudgetChart.vue";
 import FeedArea from "@/components/home/feed/FeedArea.vue";
 </script>
 
@@ -11,7 +11,7 @@ import FeedArea from "@/components/home/feed/FeedArea.vue";
     <categories-area class="categories" />
     <chat-window class="chat" />
     <new-purchase class="purchase" />
-    <the-chart class="chart" />
+    <budget-chart class="chart" />
     <feed-area class="feed" />
   </main>
 </template>
