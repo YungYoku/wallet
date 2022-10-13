@@ -43,7 +43,7 @@ async function swapBudget(bid: string) {
           type="button"
           @click="swapBudget(budget)"
         >
-          {{ budget }}
+          {{ budget.name }}
         </button>
       </div>
     </div>

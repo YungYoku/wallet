@@ -10,7 +10,7 @@ const budgetsStore = useBudgetsStore();
 
 const route = useRoute();
 
-let layout = computed<string>(() => {
+const layout = computed<string>(() => {
   return (route.meta.layout as string) || "EmptyLayout";
 });
 

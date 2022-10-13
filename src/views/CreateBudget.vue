@@ -12,51 +12,59 @@ const router = useRouter();
 
 const budget = reactive({
   name: "",
-  pass: "",
-  id: "",
+  password: "",
   isValid() {
-    return budget.name.length >= 4 && budget.pass.length >= 6;
+    return budget.name.length >= 4 && budget.password.length >= 6;
   },
 });
 
-async function createBudget() {
+const create = async () => {
   if (budget.isValid()) {
-    budget.id = budget.name + "-" + budget.pass;
+    const budgetId = budget.name + "-" + budget.password;
 
-    await setDoc(doc(db, "budgets", budget.id), {
+    await setDoc(doc(db, "budgets", budgetId), {
       balance: 0,
       categories: [],
       chat: [],
       name: budget.name,
       purchases: [],
-    });
+    })
+      .then(async () => {
+        await updateDoc(doc(db, "users", logsStore.uid), {
+          budgets: arrayUnion({
+            name: budget.name,
+            password: budget.password,
+          }),
+        });
 
-    await updateDoc(doc(db, "users", logsStore.uid), {
-      budgets: arrayUnion(budget.id),
-    });
-
-    await budgetsStore.swapBudget(budget.id);
-    await router.push("/");
+        await budgetsStore.swapBudget(budgetId);
+        await router.push("/");
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   }
-}
+};
 </script>
 
 <template>
   <div class="createBudget">
     <h2>Создать</h2>
 
-    <form @submit.prevent="createBudget">
+    <form @submit.prevent="create">
       <input
         v-model.trim="budget.name"
         class="name"
         placeholder="Название бюджета"
+        required
         type="text"
       />
 
       <input
-        v-model.trim="budget.pass"
+        v-model.trim="budget.password"
         class="password"
         placeholder="Пароль"
+        required
         type="password"
       />
       <button type="submit">Создать</button>

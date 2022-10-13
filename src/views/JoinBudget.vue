@@ -2,7 +2,7 @@
 import { reactive } from "vue";
 import { useRouter } from "vue-router";
 import { db } from "@/main";
-import { arrayUnion, doc, updateDoc } from "firebase/firestore";
+import { arrayUnion, doc, getDoc, updateDoc } from "firebase/firestore";
 import { useBudgetsStore } from "@/stores/budgets";
 import { useLogsStore } from "@/stores/logs";
 
@@ -12,41 +12,63 @@ const router = useRouter();
 
 const budget = reactive({
   name: "",
-  pass: "",
-  id: "",
+  password: "",
   isValid() {
-    return budget.name.length >= 4 && budget.pass.length >= 6;
+    return budget.name.length >= 4 && budget.password.length >= 6;
+  },
+  reset() {
+    budget.name = "";
+    budget.password = "";
   },
 });
 
-async function joinBudget() {
+const join = async () => {
   if (budget.isValid()) {
-    budget.id = budget.name + "-" + budget.pass;
-    await updateDoc(doc(db, "users", logsStore.uid), {
-      budgets: arrayUnion(budget.id),
-    });
-    await budgetsStore.swapBudget(budget.id);
-    await router.push("/");
+    const budgetId = `${budget.name}-${budget.password}`;
+
+    const docRef = doc(db, "budgets", budgetId);
+    const docSnap = await getDoc(docRef);
+
+    if (docSnap.exists()) {
+      await updateDoc(doc(db, "users", logsStore.uid), {
+        budgets: arrayUnion({
+          name: budget.name,
+          password: budget.password,
+        }),
+      })
+        .then(async () => {
+          await budgetsStore.swapBudget(budgetId);
+          await router.push("/");
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    } else {
+      budget.reset();
+      console.error("No such document!");
+    }
   }
-}
+};
 </script>
 
 <template>
   <div class="joinBudget">
     <h2>Присоединиться</h2>
 
-    <form @submit.prevent="joinBudget">
+    <form @submit.prevent="join">
       <input
         v-model.trim="budget.name"
         class="name"
         placeholder="Название бюджета"
+        required
         type="text"
       />
 
       <input
-        v-model.trim="budget.pass"
+        v-model.trim="budget.password"
         class="password"
         placeholder="Пароль"
+        required
         type="password"
       />
 
