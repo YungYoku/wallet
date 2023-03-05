@@ -1,24 +1,23 @@
 <script lang="ts" setup>
-import { computed, ref } from "vue";
+import { computed } from "vue";
 import { useBudgetsStore } from "@/stores/budgets";
 import BudgetName from "@/components/home/chart/BudgetName.vue";
 import type { ChartData } from "@/interfaces/chartData";
 import BgLoading from "@/components/BgLoading.vue";
 import { useLoadingStore } from "@/stores/loading";
-import { PieChart } from "vue-chart-3";
-
 import { ArcElement, Chart, PieController } from "chart.js";
+import { Pie } from "vue-chartjs";
 
 Chart.register(PieController, ArcElement);
 
 const loadingStore = useLoadingStore();
 const budgetsStore = useBudgetsStore();
 
-const options = ref({
+const options = {
   responsive: true,
-});
+};
 
-let data = computed<ChartData>(() => {
+const data = computed<ChartData>(() => {
   let _data = [];
   if (
     budgetsStore.budget.categories &&
@@ -53,10 +52,13 @@ let data = computed<ChartData>(() => {
   });
 
   return {
+    labels: [],
     datasets: [
       {
+        label: "График",
         data: values,
         backgroundColor: backgroundColors,
+        hoverOffset: 4,
       },
     ],
   };
@@ -69,13 +71,8 @@ let data = computed<ChartData>(() => {
   <aside v-else>
     <budget-name />
 
-    <div v-if="budgetsStore.budget.balance" class="canvasWrap">
-      <pie-chart
-        :chartData="data"
-        :height="300"
-        :options="options"
-        :width="300"
-      />
+    <div v-if="budgetsStore.budget.balance && data" class="canvasWrap">
+      <pie :data="data" :height="300" :options="options" :width="300" />
     </div>
 
     <div v-else class="emptyCircle"></div>

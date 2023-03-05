@@ -1,8 +1,11 @@
-interface Dataset {
-  data: number[];
-  backgroundColor: string[];
-}
-
 export interface ChartData {
-  datasets: Dataset[];
+  labels: [];
+  datasets: [
+    {
+      label: string;
+      data: number[];
+      backgroundColor: string[];
+      hoverOffset: number;
+    }
+  ];
 }

@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { reactive } from "vue";
+import { ref } from "vue";
 import { useRouter } from "vue-router";
 import { db } from "@/main";
 import { arrayUnion, doc, getDoc, updateDoc } from "firebase/firestore";
@@ -10,43 +10,26 @@ const budgetsStore = useBudgetsStore();
 const logsStore = useLogsStore();
 const router = useRouter();
 
-const budget = reactive({
-  name: "",
-  password: "",
-  isValid() {
-    return budget.name.length >= 4 && budget.password.length >= 6;
-  },
-  reset() {
-    budget.name = "";
-    budget.password = "";
-  },
-});
+const bid = ref("");
 
 const join = async () => {
-  if (budget.isValid()) {
-    const budgetId = `${budget.name}-${budget.password}`;
+  const docRef = doc(db, "budgets", bid.value);
+  const docSnap = await getDoc(docRef);
 
-    const docRef = doc(db, "budgets", budgetId);
-    const docSnap = await getDoc(docRef);
-
-    if (docSnap.exists()) {
-      await updateDoc(doc(db, "users", logsStore.uid), {
-        budgets: arrayUnion({
-          name: budget.name,
-          password: budget.password,
-        }),
+  if (docSnap.exists()) {
+    await updateDoc(doc(db, "users", logsStore.uid), {
+      budgets: arrayUnion(bid.value),
+    })
+      .then(async () => {
+        await budgetsStore.swapBudget(bid.value);
+        await router.push("/");
       })
-        .then(async () => {
-          await budgetsStore.swapBudget(budgetId);
-          await router.push("/");
-        })
-        .catch((error) => {
-          console.error(error);
-        });
-    } else {
-      budget.reset();
-      console.error("No such document!");
-    }
+      .catch((error) => {
+        console.error(error);
+      });
+  } else {
+    bid.value = "";
+    console.error("No such document!");
   }
 };
 </script>
@@ -57,19 +40,11 @@ const join = async () => {
 
     <form @submit.prevent="join">
       <input
-        v-model.trim="budget.name"
+        v-model.trim="bid"
         class="name"
-        placeholder="Название бюджета"
+        placeholder="ID бюджета"
         required
         type="text"
-      />
-
-      <input
-        v-model.trim="budget.password"
-        class="password"
-        placeholder="Пароль"
-        required
-        type="password"
       />
 
       <button type="submit">Присоединиться</button>

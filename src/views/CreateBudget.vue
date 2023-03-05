@@ -1,8 +1,14 @@
 <script lang="ts" setup>
-import { reactive } from "vue";
+import { ref } from "vue";
 import { useRouter } from "vue-router";
 import { db } from "@/main";
-import { arrayUnion, doc, setDoc, updateDoc } from "firebase/firestore";
+import {
+  addDoc,
+  arrayUnion,
+  collection,
+  doc,
+  updateDoc,
+} from "firebase/firestore";
 import { useBudgetsStore } from "@/stores/budgets";
 import { useLogsStore } from "@/stores/logs";
 
@@ -10,39 +16,25 @@ const budgetsStore = useBudgetsStore();
 const logsStore = useLogsStore();
 const router = useRouter();
 
-const budget = reactive({
-  name: "",
-  password: "",
-  isValid() {
-    return budget.name.length >= 4 && budget.password.length >= 6;
-  },
-});
+const name = ref("");
 
 const create = async () => {
-  if (budget.isValid()) {
-    const budgetId = budget.name + "-" + budget.password;
-
-    await setDoc(doc(db, "budgets", budgetId), {
+  if (name.value) {
+    const docRef = await addDoc(collection(db, "budgets"), {
       balance: 0,
       categories: [],
       chat: [],
-      name: budget.name,
+      name: name.value,
       purchases: [],
-    })
-      .then(async () => {
-        await updateDoc(doc(db, "users", logsStore.uid), {
-          budgets: arrayUnion({
-            name: budget.name,
-            password: budget.password,
-          }),
-        });
+    });
+    const bid = docRef.id;
 
-        await budgetsStore.swapBudget(budgetId);
-        await router.push("/");
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+    await updateDoc(doc(db, "users", logsStore.uid), {
+      budgets: arrayUnion(bid),
+    });
+
+    await budgetsStore.swapBudget(bid);
+    await router.push("/");
   }
 };
 </script>
@@ -53,20 +45,13 @@ const create = async () => {
 
     <form @submit.prevent="create">
       <input
-        v-model.trim="budget.name"
+        v-model.trim="name"
         class="name"
         placeholder="Название бюджета"
         required
         type="text"
       />
 
-      <input
-        v-model.trim="budget.password"
-        class="password"
-        placeholder="Пароль"
-        required
-        type="password"
-      />
       <button type="submit">Создать</button>
     </form>
   </div>

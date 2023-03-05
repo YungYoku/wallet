@@ -4,7 +4,7 @@ const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
-      path: "/:pathMatch(.*)*",
+      path: "/",
       name: "Home",
       component: () => import("@/views/HomeView.vue"),
       meta: {
@@ -65,26 +65,21 @@ const router = createRouter({
   ],
 });
 
-router.resolve({
-  name: "404",
-  params: { pathMatch: ["404"] },
-}).href;
-
-router.beforeEach((to, from, next) => {
+router.beforeEach((to) => {
   const requireAuth = to.meta.auth;
   const logged = localStorage.uid;
 
   if (logged) {
     if (requireAuth) {
-      next();
+      return true;
     } else {
-      next("/");
+      return "/";
     }
   } else {
     if (requireAuth) {
-      next("/login");
+      return "/login";
     } else {
-      next();
+      return true;
     }
   }
 });
